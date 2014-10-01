@@ -53,7 +53,8 @@ namespace HlsView
                     {
                         userSettings["Token"] = (string)o["token"];
                     }
-                    
+                    //GOOD ACCOUNT - AUTHENTICATE AND NAVIGATE.
+                    NavigationService.Navigate(new Uri("/PivotMain.xaml", UriKind.Relative));       
                 }
                 else
                 {
