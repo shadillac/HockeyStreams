@@ -31,8 +31,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("HlsView8")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Top Cheddar Hockey Streams")]
+[assembly: AssemblyDescription("Top Cheddar Hockey Streams")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

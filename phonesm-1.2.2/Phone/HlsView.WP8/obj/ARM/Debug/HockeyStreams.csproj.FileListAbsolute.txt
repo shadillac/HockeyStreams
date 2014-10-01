@@ -4,11 +4,8 @@ C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileSmall.png
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Assets\Tiles\IconicTileMediumLarge.png
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Assets\Tiles\IconicTileSmall.png
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\HlsView8.dll
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\HlsView8.pdb
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\AppManifest.xaml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Properties\WMAppManifest.xml
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\HlsView8_Debug_x86.xap
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Autofac.dll
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\SM.Media.Builder.dll
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\SM.Media.dll
@@ -26,10 +23,16 @@ C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\System.Net.Http.Extensions.xml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\System.Net.Http.Primitives.xml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\App.g.cs
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\MainPage.g.cs
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\HlsView8.g.resources
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\HlsView.Resources.AppResources.resources
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\HockeyStreams.csproj.GenerateResource.Cache
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\HlsView8.dll
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\HlsView8.pdb
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\XapCacheFile.xml
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Top Cheddar Hockey Streams.dll
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Top Cheddar Hockey Streams.pdb
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\TCHS_Debug_x86.xap
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Newtonsoft.Json.dll
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\ARM\Debug\Newtonsoft.Json.xml
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\Login.g.cs
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\StreamViewer.g.cs
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\Top Cheddar Hockey Streams.g.resources
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\Top Cheddar Hockey Streams.dll
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\ARM\Debug\Top Cheddar Hockey Streams.pdb

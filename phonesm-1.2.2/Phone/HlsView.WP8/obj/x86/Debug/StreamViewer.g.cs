@@ -67,7 +67,7 @@ namespace HlsView {
                 return;
             }
             _contentLoaded = true;
-            System.Windows.Application.LoadComponent(this, new System.Uri("/HlsView8;component/StreamViewer.xaml", System.UriKind.Relative));
+            System.Windows.Application.LoadComponent(this, new System.Uri("/Top%20Cheddar%20Hockey%20Streams;component/StreamViewer.xaml", System.UriKind.Relative));
             this.LayoutRoot = ((System.Windows.Controls.Grid)(this.FindName("LayoutRoot")));
             this.TitlePanel = ((System.Windows.Controls.StackPanel)(this.FindName("TitlePanel")));
             this.playButton = ((System.Windows.Controls.Button)(this.FindName("playButton")));
