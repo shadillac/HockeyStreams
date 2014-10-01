@@ -2,6 +2,8 @@
   <Deployment.Parts>
     <AssemblyPart x:Name="Top Cheddar Hockey Streams" Source="Top Cheddar Hockey Streams.dll" />
     <AssemblyPart x:Name="Autofac" Source="Autofac.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="SM.Media.Builder" Source="SM.Media.Builder.dll" />
     <AssemblyPart x:Name="SM.Media" Source="SM.Media.dll" />

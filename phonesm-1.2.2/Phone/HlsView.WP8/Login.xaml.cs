@@ -10,11 +10,14 @@ using Microsoft.Phone.Shell;
 using HlsView.Resources;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.IO.IsolatedStorage;
 
 namespace HlsView
 {
     public partial class Login : PhoneApplicationPage
     {
+        private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
+
         public Login()
         {
             InitializeComponent();
@@ -22,23 +25,55 @@ namespace HlsView
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            WebClient wc = new WebClient();
-            wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-            wc.UploadStringCompleted += wc_UploadStringCompleted;
-            string parameters = "username=shadillac&password=Niggaplease9&key=" + AppResources.APIKey.ToString();
-            wc.UploadStringAsync(new Uri("https://api.hockeystreams.com/Login?"),"POST", parameters);
+            
         }
 
         void wc_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
         {
-            JObject o = JObject.Parse(e.Result);
-            tbOutput.Text = o.ToString();
+            JObject o = new JObject();
+            try
+            {
+                o = JObject.Parse(e.Result);
+            }
+            catch (System.Reflection.TargetInvocationException)
+            {
+                //MessageBox.Show("Username or Password Incorrect.  Please verify and reenter.");
+            }
+
+            if ((string)o["status"]=="Success")
+            {
+                if ((string)o["membership"]=="Premium")
+                {
+                    //ADD TOKEN TO USER STORAGE
+                    try
+                    {
+                        userSettings.Add("Token", (string)o["token"]);
+                    }
+                    catch (ArgumentException)
+                    {
+                        userSettings["Token"] = (string)o["token"];
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Your membership is not a premium membership.  Premium Membership is needed in order to access content.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Username or Password incorrect.  Please verify and enter again.");
+            }
         }
 
-        private void HttpCompleted(object sender, DownloadStringCompletedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            JObject o = JObject.Parse(e.Result);
-            tbOutput.Text = o.ToString();
+            WebClient wc = new WebClient();
+            wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            wc.UploadStringCompleted += wc_UploadStringCompleted;
+            string parameters = "username="+txtUsername.Text+"&password="+pwdPassword.Password+"&key=" + AppResources.APIKey.ToString();
+            wc.UploadStringAsync(new Uri("https://api.hockeystreams.com/Login?"), "POST", parameters);
         }
+
     }
 }
