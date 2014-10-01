@@ -26,7 +26,6 @@ C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\System.Net.Http.Extensions.xml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\System.Net.Http.Primitives.xml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\App.g.cs
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\MainPage.g.cs
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HlsView8.g.resources
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HlsView.Resources.AppResources.resources
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HockeyStreams.csproj.GenerateResource.Cache
@@ -34,3 +33,7 @@ C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HlsView8.pdb
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\XapCacheFile.xml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HockeyStreams.csprojResolveAssemblyReference.cache
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\StreamViewer.g.cs
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\Newtonsoft.Json.xml
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\Login.g.cs

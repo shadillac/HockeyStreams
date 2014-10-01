@@ -2,6 +2,7 @@
   <Deployment.Parts>
     <AssemblyPart x:Name="HlsView8" Source="HlsView8.dll" />
     <AssemblyPart x:Name="Autofac" Source="Autofac.dll" />
+    <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="SM.Media.Builder" Source="SM.Media.Builder.dll" />
     <AssemblyPart x:Name="SM.Media" Source="SM.Media.dll" />
     <AssemblyPart x:Name="SM.Media.Platform.WP8" Source="SM.Media.Platform.WP8.dll" />
