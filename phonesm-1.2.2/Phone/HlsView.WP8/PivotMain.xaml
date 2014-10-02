@@ -20,16 +20,17 @@
         <phone:Pivot Title="Top Cheddar Hockey Streams">
             <!--Pivot item one-->
             <phone:PivotItem Header="LiveStreams">
-                <Grid >
-                    <toolkit:DatePicker x:Name="liveDate" Margin="0,0,0,535" Width="456" Grid.ColumnSpan="2" ValueChanged="liveDate_ValueChanged" />
-                    <TextBlock Name="txtOutput" HorizontalAlignment="Left" Margin="32,91,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="458" Width="396" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-
+                <Grid>
+                    <toolkit:DatePicker x:Name="liveDate" Margin="0,-34,0,494" Width="456" ValueChanged="liveDate_ValueChanged" />
+                    <ScrollViewer Margin="0,27,0,0">
+                        <Grid Name="ContentPanel" HorizontalAlignment="Left" Height="566" VerticalAlignment="Top" Width="456"/>
+                    </ScrollViewer>
                 </Grid>
             </phone:PivotItem>
 
             <!--Pivot item two-->
             <phone:PivotItem Header="OnDemand">
-                <toolkit:DatePicker x:Name="ondemandDate" Margin="0,0,0,535" Width="456" Grid.ColumnSpan="2"/>
+                <toolkit:DatePicker x:Name="ondemandDate" Margin="0,-34,0,494" Width="456" Grid.ColumnSpan="2"/>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

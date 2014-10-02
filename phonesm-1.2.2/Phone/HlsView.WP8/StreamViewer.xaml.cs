@@ -47,7 +47,7 @@ namespace HlsView
             "http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8",
             "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
             null,
-            "http://s.hscontent.com/preview/preview_hs.m3u8"
+            "http://watch.hscontent.com/east16/OTHER_HSTV_HALSD.m3u8"
         };
 
         readonly DispatcherTimer _timer;
@@ -232,7 +232,7 @@ namespace HlsView
             _mediaStreamFascade.Source = new Uri(
                 //"http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8"
                 //"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
-                "http://s.hscontent.com/preview/preview_hs.m3u8"
+                "http://watch.hscontent.com/east16/OTHER_HSTV_HALSD.m3u8"
                 );
 
             mediaElement1.Play();
