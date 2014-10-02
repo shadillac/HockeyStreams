@@ -21,8 +21,8 @@
             <!--Pivot item one-->
             <phone:PivotItem Header="LiveStreams">
                 <Grid >
-                    <toolkit:DatePicker x:Name="liveDate" Margin="0,0,0,535" Width="456" Grid.ColumnSpan="2"/>
-                    <TextBlock Name="txtOutput" HorizontalAlignment="Left" Margin="32,91,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="458" Width="396" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                    <toolkit:DatePicker x:Name="liveDate" Margin="0,0,0,535" Width="456" Grid.ColumnSpan="2" ValueChanged="liveDate_ValueChanged" />
+                    <TextBlock Name="txtOutput" HorizontalAlignment="Left" Margin="32,91,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="458" Width="396" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
 
                 </Grid>
             </phone:PivotItem>

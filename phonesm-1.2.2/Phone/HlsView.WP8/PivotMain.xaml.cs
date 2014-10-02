@@ -24,16 +24,24 @@ namespace HlsView
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if(liveDate.Value.Value.Date.ToShortDateString()==DateTime.Now.Date.ToShortDateString())
+            {
+                //GET TOKEN FROM MEMORY
+                string authToken = (string)userSettings["Token"];
+
+                //GET TODAYS LIVE GAMES
+                WebClient wc = new WebClient();
+                wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler;
+                wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetLive?token=" + authToken));
+            }
+            
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
             //REMOVE LOGIN PAGE FROM MEMORY
             NavigationService.RemoveBackEntry();
 
-            //GET TOKEN FROM MEMORY
-            string authToken = (string)userSettings["Token"];
-
-            //GET TODAYS LIVE GAMES
-            WebClient wc = new WebClient();
-            wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler;
-            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetLive?token="+authToken));
         }
 
         void wc_DownloadStringCompletedHandler(object sender, DownloadStringCompletedEventArgs e)
@@ -43,11 +51,22 @@ namespace HlsView
             {
                 o = JObject.Parse(e.Result);
             }
-            catch (System.Reflection.TargetInvocationException)
+            catch (Exception)//System.Reflection.TargetInvocationException)
             {
-                //MessageBox.Show("Username or Password Incorrect.  Please verify and reenter.");
+                MessageBox.Show("Username or Password Incorrect.  Please verify and reenter.");
             }
             txtOutput.Text = o.ToString();
+        }
+
+        private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
+        {
+            //GET TOKEN FROM MEMORY
+            string authToken = (string)userSettings["Token"];
+
+            //GET TODAYS LIVE GAMES
+            WebClient wc = new WebClient();
+            wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler;
+            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetLive?date="+liveDate.Value.Value.Date.ToShortDateString()+"&token=" + authToken));
         }
 
     }
