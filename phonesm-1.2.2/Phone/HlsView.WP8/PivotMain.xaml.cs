@@ -75,32 +75,48 @@ namespace HlsView
             {
                 o = JObject.Parse(e.Result);
             }
-            catch (Exception ex)//System.Reflection.TargetInvocationException)
+            catch (Exception)//System.Reflection.TargetInvocationException)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("No games found for this day.");
             }
 
-            Button[] btnAway = new Button[o["schedule"].Count()];
-            int heightMargin = 0;
-            int horizMargin = 0;
-            int i = 0;
-
-            foreach (JToken game in o["schedule"])
+            try
             {
-                btnAway[i] = new Button { Content = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), FontSize = 14, Tag = game["id"].ToString() };
-                btnAway[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                btnAway[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                btnAway[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
-                btnAway[i].Width = 450;
-                if (game["isPlaying"].ToString()=="1")
-                {
-                    btnAway[i].Background = GetColorFromHexa("#FFFF00");
-                    btnAway[i].Foreground = GetColorFromHexa("#000000");
-                }
-                ContentPanel.Children.Add(btnAway[i]);
+                Button[] btnGames = new Button[o["schedule"].Count()];
+                TextBlock[] txtInfo = new TextBlock[o["schedule"].Count()];
+                int heightMargin = 0;
+                int horizMargin = 0;
+                int i = 0;
+                ContentPanel.Height = 70 * o["schedule"].Count();
 
-                heightMargin = heightMargin + 55;
-                i++;
+                foreach (JToken game in o["schedule"])
+                {
+                    btnGames[i] = new Button { Content = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), FontSize = 14, Tag = game["id"].ToString() };
+                    btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                    btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
+                    btnGames[i].Width = 450;
+                    if (game["isPlaying"].ToString() == "1")
+                    {
+                        btnGames[i].Background = GetColorFromHexa("#FFFF00");
+                        btnGames[i].Foreground = GetColorFromHexa("#000000");
+                    }
+                    btnGames[i].Click += GameList_Click;
+                    ContentPanel.Children.Add(btnGames[i]);
+
+                    txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(),FontSize = 12 };
+                    txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                    txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 50, 0, 0);
+                    ContentPanel.Children.Add(txtInfo[i]);
+
+                    heightMargin = heightMargin + 65;
+                    i++;
+                }
+            }
+            catch
+            {
+
             }
 
         }
@@ -114,12 +130,19 @@ namespace HlsView
             return scb;
         }
 
+        void GameList_Click(object sender, RoutedEventArgs e)
+        {
+            Button target = sender as Button;
+            NavigationService.Navigate(new Uri("/LiveStreamDetail.xaml?streamID=" + target.Tag.ToString(), UriKind.Relative));
+        }
+
         private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
             int contentLength = ContentPanel.Children.Count;
             for(int child=0;child < contentLength;child++)
             {
                 ContentPanel.Children.RemoveAt(0);
+
             }
             
             //GET TOKEN FROM MEMORY

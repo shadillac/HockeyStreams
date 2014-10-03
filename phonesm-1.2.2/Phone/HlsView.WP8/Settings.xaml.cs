@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
+using Newtonsoft.Json.Linq;
 
 namespace HlsView
 {
@@ -25,19 +26,66 @@ namespace HlsView
 
         }
 
+        void wc_DownloadStringCompletedHandler(object sender, DownloadStringCompletedEventArgs e)
+        {
+            JObject o = new JObject();
+            try
+            {
+                string[] locations = e.Result.Split(new Char[] {','});
+                foreach (string location in locations)
+                {
+                    string[] locData = location.Split(new Char[] { '"' });
+                    locationPicker.Items.Add(locData[3]);
+                }
+                
+            }
+            catch (Exception)//System.Reflection.TargetInvocationException)
+            {
+                MessageBox.Show("Unable to load stream locatoins.");
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (locationPicker.Items.Count == 0)
+            {
+                try
+                {
+                    locationPicker.Items.Add("Asia");
+                    locationPicker.Items.Add("Europe");
+                    locationPicker.Items.Add("North America - Central");
+                    locationPicker.Items.Add("North America - East");
+                    locationPicker.Items.Add("North America - East Canada");
+                    locationPicker.Items.Add("North America - West");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             string hideScores = "";
             string gameType = "";
+            string location = "";
             try
             {
                 hideScores = (string)userSettings["HideScores"];
                 gameType = (string)userSettings["GameType"];
+                location = (string)userSettings["Location"];
             }
             catch
             {
                 hideScores = "null";
                 gameType = "null";
+                location = "null";
+            }
+
+            if (location != "null")
+            {
+                locationPicker.SelectedItem = location;
+            }
+            else
+            {
+                locationPicker.SelectedItem = "North America - Central";
             }
 
             if (hideScores == "1")
@@ -128,6 +176,15 @@ namespace HlsView
                 {
                     userSettings["GameType"] = "Condensed";
                 }
+            }
+
+            try
+            {
+                userSettings.Add("Location", locationPicker.SelectedItem);
+            }
+            catch (ArgumentException)
+            {
+                userSettings["Location"] = locationPicker.SelectedItem;
             }
 
             NavigationService.GoBack();

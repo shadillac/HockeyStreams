@@ -23,7 +23,7 @@
                 <Grid>
                     <toolkit:DatePicker x:Name="liveDate" Margin="0,-34,0,494" Width="456" ValueChanged="liveDate_ValueChanged" />
                     <ScrollViewer Margin="0,27,0,0">
-                        <Grid Name="ContentPanel" HorizontalAlignment="Left" Height="566" VerticalAlignment="Top" Width="456"/>
+                        <Grid Name="ContentPanel" HorizontalAlignment="Left" Height="566" VerticalAlignment="Top" Width="456" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
                     </ScrollViewer>
                 </Grid>
             </phone:PivotItem>

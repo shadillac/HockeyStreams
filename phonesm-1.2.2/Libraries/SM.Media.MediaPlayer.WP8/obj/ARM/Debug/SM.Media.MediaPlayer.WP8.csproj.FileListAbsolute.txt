@@ -16,4 +16,3 @@ C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Libraries\SM.Medi
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Libraries\SM.Media.MediaPlayer.WP8\Bin\ARM\Debug\System.Net.Http.Primitives.xml
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Libraries\SM.Media.MediaPlayer.WP8\obj\ARM\Debug\SM.Media.MediaPlayer.WP8.dll
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Libraries\SM.Media.MediaPlayer.WP8\obj\ARM\Debug\SM.Media.MediaPlayer.WP8.pdb
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Libraries\SM.Media.MediaPlayer.WP8\obj\ARM\Debug\SM.Media.MediaPlayer.WP8.csprojResolveAssemblyReference.cache
