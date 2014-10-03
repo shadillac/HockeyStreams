@@ -229,10 +229,13 @@ namespace HlsView
 
             InitializeMediaStream();
 
+            string source = "";
+            NavigationContext.QueryString.TryGetValue("source", out source);
+
             _mediaStreamFascade.Source = new Uri(
                 //"http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8"
                 //"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
-                "http://watch.hscontent.com/east16/OTHER_HSTV_HALSD.m3u8"
+                source
                 );
 
             mediaElement1.Play();
@@ -386,6 +389,37 @@ namespace HlsView
         void mediaElement1_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
             mediaElement1_CurrentStateChanged(sender, e);
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (null == mediaElement1)
+            {
+                Debug.WriteLine("MainPage Play no media element");
+                return;
+            }
+
+            if (MediaElementState.Paused == mediaElement1.CurrentState)
+            {
+                mediaElement1.Play();
+                return;
+            }
+
+            errorBox.Visibility = Visibility.Collapsed;
+            playButton.IsEnabled = false;
+
+            InitializeMediaStream();
+
+            string source = "";
+            NavigationContext.QueryString.TryGetValue("source", out source);
+
+            _mediaStreamFascade.Source = new Uri(
+                source
+                );
+
+            mediaElement1.Play();
+
+            _positionSampler.Start();
         }
     }
 }

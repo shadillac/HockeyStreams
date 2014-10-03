@@ -100,8 +100,9 @@ namespace HlsView
                     {
                         btnGames[i].Background = GetColorFromHexa("#FFFF00");
                         btnGames[i].Foreground = GetColorFromHexa("#000000");
+                        btnGames[i].Click += GameList_Click;
                     }
-                    btnGames[i].Click += GameList_Click;
+                    
                     ContentPanel.Children.Add(btnGames[i]);
 
                     txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(),FontSize = 12 };
