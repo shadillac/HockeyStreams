@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using Newtonsoft.Json.Linq;
+using Microsoft.Phone.Tasks;
 
 namespace HlsView
 {
@@ -57,35 +58,25 @@ namespace HlsView
                     locationPicker.Items.Add("North America - East");
                     locationPicker.Items.Add("North America - East Canada");
                     locationPicker.Items.Add("North America - West");
+                    locationPicker.SelectedItem = (string)userSettings["Location"];
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.Message);
+                    locationPicker.SelectedItem = "North America - Central";
                 }
             }
             string hideScores = "";
             string gameType = "";
-            string location = "";
             try
             {
                 hideScores = (string)userSettings["HideScores"];
                 gameType = (string)userSettings["GameType"];
-                location = (string)userSettings["Location"];
             }
             catch
             {
                 hideScores = "null";
                 gameType = "null";
-                location = "null";
-            }
 
-            if (location != "null")
-            {
-                locationPicker.SelectedItem = location;
-            }
-            else
-            {
-                locationPicker.SelectedItem = "North America - Central";
             }
 
             if (hideScores == "1")
@@ -213,5 +204,55 @@ namespace HlsView
             rdoHighlights.IsChecked = false;
             rdoFullGames.IsChecked = false;
         }
+
+        private void btnIP_Click(object sender, RoutedEventArgs e)
+        {
+            WebClient wClient = new WebClient();
+            wClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            wClient.UploadStringCompleted += IPUploadCompleted;
+            string parameters2 = "token=" + (string)userSettings["Token"];
+            wClient.UploadStringAsync(new Uri("https://api.hockeystreams.com/IPException?"), "POST", parameters2);
+        }
+
+        void IPUploadCompleted(object sender, UploadStringCompletedEventArgs e)
+        {
+            JObject o = new JObject();
+            try
+            {
+                o = JObject.Parse(e.Result);
+                if (o["status"].ToString()=="Success")
+                {
+                    MessageBox.Show("IP Exception Created Successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Error in creating IP Exception");
+                }
+            }
+            catch (System.Reflection.TargetInvocationException)
+            {
+                //MessageBox.Show("Username or Password Incorrect.  Please verify and reenter.");
+            }
+        }
+
+        private void locationPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void locationPicker_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnIP_Click_1(object sender, RoutedEventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            webBrowserTask.Uri = new Uri("http://www.hockeystreams.com/devices");
+            webBrowserTask.Show();
+        }
+
+
+        
     }
 }

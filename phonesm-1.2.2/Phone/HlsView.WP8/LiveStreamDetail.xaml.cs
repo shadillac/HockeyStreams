@@ -48,6 +48,7 @@ namespace HlsView
 
         void wc_DownloadStringCompletedHandler(object sender, DownloadStringCompletedEventArgs e)
         {
+            string authToken = (string)userSettings["Token"];
             JObject o = new JObject();
             try
             {
@@ -66,7 +67,7 @@ namespace HlsView
                 txtGameTime.Text = "Start Time: " + o["startTime"].ToString();
                 awayScore.Text = o["awayScore"].ToString();
                 homeScore.Text = o["homeScore"].ToString();
-                Button launchStream = new Button { Content = "Launch Live Stream", Tag = o["nonDVR"][0]["src"].ToString(), Margin=new Thickness(20,482,0,0), VerticalAlignment=VerticalAlignment.Top, Width=324, Height=105 };
+                Button launchStream = new Button { Content = "Launch Live Stream", Tag = o["nonDVRSD"][0]["src"].ToString(), Margin = new Thickness(20, 482, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                 launchStream.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
                 
                 launchStream.Click += launchStream_Click;

@@ -420,6 +420,7 @@ namespace HlsView
             mediaElement1.Play();
 
             _positionSampler.Start();
+
         }
     }
 }

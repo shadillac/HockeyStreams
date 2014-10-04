@@ -30,13 +30,14 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Margin="12,17,10,0" Grid.RowSpan="2">
             <CheckBox x:Name="chkHideScores" Content="Hide Scores" HorizontalAlignment="Left" Margin="23,231,0,0" VerticalAlignment="Top" Checked="chkHideScores_Checked"/>
-            <toolkit:ListPicker Header="Location" x:Name="locationPicker" Margin="23,123,25,528"/>
+            <toolkit:ListPicker Header="Location" x:Name="locationPicker" Margin="23,123,25,528" SelectionChanged="locationPicker_SelectionChanged" Loaded="locationPicker_Loaded"/>
 
             <RadioButton x:Name="rdoHighlights" Content="Highlights" HorizontalAlignment="Left" Margin="23,310,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
             <RadioButton x:Name="rdoFullGames" Content="Full Games" HorizontalAlignment="Left" Margin="23,399,0,0" VerticalAlignment="Top" Width="183" Checked="rdoFullGames_Checked"/>
             <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="52,628,0,0" VerticalAlignment="Top" Click="btnSave_Click" Width="157" Height="92"/>
             <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="234,628,0,0" VerticalAlignment="Top" Click="btnCancel_Click" Width="157" Height="92"/>
             <RadioButton Name="rdoCondensed" Content="Condensed" HorizontalAlignment="Left" Margin="23,354,0,0" VerticalAlignment="Top" Checked="rdoCondensed_Checked"/>
+            <Button Name="btnIP" Content="Create IP Exception" HorizontalAlignment="Left" Margin="23,476,0,0" VerticalAlignment="Top" Click="btnIP_Click_1" />
 
         </Grid>
 

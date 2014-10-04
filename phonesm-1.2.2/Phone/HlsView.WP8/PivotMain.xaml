@@ -13,13 +13,47 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="AddrBookItemTemplate">
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock FontWeight="Bold"  Text="{Binding TeamName}" />
+                <TextBlock Text="{Binding League}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AddrBookGroupHeaderTemplate">
+            <Border Background="Transparent" Padding="5">
+                <Border Background="{StaticResource PhoneAccentBrush}" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2" Width="62" 
+         Height="62" Margin="0,0,18,0" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Key}" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="48" Padding="6" 
+            FontFamily="{StaticResource PhoneFontFamilySemiLight}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Border>
+            </Border>
+        </DataTemplate>
+        <phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter"/>
+        <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter"/>
+        <Style x:Key="AddrBookJumpListStyle" TargetType="phone:LongListSelector">
+            <Setter Property="GridCellSize"  Value="113,113"/>
+            <Setter Property="LayoutMode" Value="Grid" />
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Background="{Binding Converter={StaticResource BackgroundConverter}}" Width="113" Height="113" Margin="6" >
+                            <TextBlock Text="{Binding Key}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="48" Padding="6" 
+               Foreground="{Binding Converter={StaticResource ForegroundConverter}}" VerticalAlignment="Center"/>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
         <phone:Pivot Title="Top Cheddar Hockey Streams">
             <!--Pivot item one-->
-            <phone:PivotItem Header="LiveStreams">
+            <phone:PivotItem x:Name="pvtLivePivot" Header="LiveStreams" Loaded="pvtLivePivot_Loaded" FontSize="16">
                 <Grid>
                     <toolkit:DatePicker x:Name="liveDate" Margin="0,-34,0,494" Width="456" ValueChanged="liveDate_ValueChanged" />
                     <ScrollViewer Margin="0,27,0,0">
@@ -29,10 +63,33 @@
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="OnDemand">
-                <toolkit:DatePicker x:Name="ondemandDate" Margin="0,-34,0,494" Width="456" Grid.ColumnSpan="2"/>
+            <phone:PivotItem Header="OnDemand" Name="pvtOnDemand" FontSize="16" Margin="12,167,12,0" Loaded="pvtOnDemand_Loaded">
+                <Grid>
+                    <toolkit:DatePicker x:Name="ondemandDate" Margin="31,-182,33,405" ValueChanged="ondemandDate_ValueChanged"/>
+                    <CheckBox x:Name="chkDate" Content="" HorizontalAlignment="Left" Margin="-8,-182,0,0" VerticalAlignment="Top" Checked="chkDate_Checked" Unchecked="chkDate_Unchecked"/>
+                    <CheckBox x:Name="chkTeams" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,-112,0,0" Checked="chkTeams_Checked" Unchecked="chkTeams_Unchecked"/>
+                    <Button x:Name="btnTeam" Content="" HorizontalAlignment="Right" Margin="0,-112,33,0" VerticalAlignment="Top" Width="392" Height="72" Click="btnTeam_Click"/>
+
+                    <ScrollViewer Margin="0,-40,0,0">
+                        <Grid Name="ODContentPanel" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="456" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Loaded="ODContentPanel_Loaded">
+                            
+                        </Grid>
+                        
+                    </ScrollViewer>
+                    <phone:LongListSelector
+                        		x:Name="teamPicker"
+                        		JumpListStyle="{StaticResource AddrBookJumpListStyle}"
+                        		Background="Transparent"
+                        		GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}"
+                        		ItemTemplate="{StaticResource AddrBookItemTemplate}"
+                        		LayoutMode="List"
+                        		IsGroupingEnabled="true"
+                        		HideEmptyGroups ="true"
+                                Visibility="Collapsed" SelectionChanged="teamPicker_SelectionChanged"/>
+                </Grid>
             </phone:PivotItem>
         </phone:Pivot>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

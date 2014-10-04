@@ -53,8 +53,19 @@ namespace HlsView
                     {
                         userSettings["Token"] = (string)o["token"];
                     }
+                    //ADD TOKEN TO USER STORAGE
+                    try
+                    {
+                        userSettings.Add("FavTeam", (string)o["favteam"]);
+                    }
+                    catch (ArgumentException)
+                    {
+                        userSettings["FavTeam"] = (string)o["favteam"];
+                    }
+                    
                     //GOOD ACCOUNT - AUTHENTICATE AND NAVIGATE.
-                    NavigationService.Navigate(new Uri("/PivotMain.xaml", UriKind.Relative));       
+                    NavigationService.Navigate(new Uri("/PivotMain.xaml", UriKind.Relative));
+       
                 }
                 else
                 {
