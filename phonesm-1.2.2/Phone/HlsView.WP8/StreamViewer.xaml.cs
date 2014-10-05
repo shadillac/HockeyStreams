@@ -35,6 +35,7 @@ using Microsoft.Phone.Controls;
 using SM.Media;
 using SM.Media.Utility;
 using SM.Media.Web;
+using Microsoft.Phone.Tasks;
 
 namespace HlsView
 {
@@ -305,6 +306,17 @@ namespace HlsView
             CloseMedia();
 
             playButton.IsEnabled = true;
+
+            if ((errorBox.Text == "3108 Unable to play media") & (errorBox.Visibility == Visibility.Visible))
+            {
+                MessageBoxResult mboxResult = MessageBox.Show("Unable to play media.  This could be due to your IP not having an exception.  You will need to visit www.hockeystreams.com/devices from your phone, sign in and update your exception.  Would you like to go there now?", "IP Exception?", MessageBoxButton.OKCancel);
+                if (mboxResult == MessageBoxResult.OK)
+                {
+                    WebBrowserTask webBrowserTask = new WebBrowserTask();
+                    webBrowserTask.Uri = new Uri("http://www.hockeystreams.com/devices");
+                    webBrowserTask.Show();
+                }
+            }
         }
 
         void mediaElement1_MediaEnded(object sender, RoutedEventArgs e)
