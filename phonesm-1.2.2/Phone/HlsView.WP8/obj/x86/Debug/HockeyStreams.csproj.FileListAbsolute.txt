@@ -93,4 +93,5 @@ C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\Settings.g.cs
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\About.g.cs
 C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\LiveStreamDetail.g.cs
-C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HockeyStreams.csprojResolveAssemblyReference.cache
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\OnDemandDetail.g.cs
+C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\HighlightViewer.g.cs

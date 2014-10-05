@@ -306,6 +306,12 @@ namespace HlsView
             NavigationService.Navigate(new Uri("/LiveStreamDetail.xaml?streamID=" + target.Tag.ToString(), UriKind.Relative));
         }
 
+        void GameList_Click_OnDemand(object sender, RoutedEventArgs e)
+        {
+            Button target = sender as Button;
+            NavigationService.Navigate(new Uri("/OnDemandDetail.xaml?streamID=" + target.Tag.ToString(), UriKind.Relative));
+        }
+
         private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
             int contentLength = ContentPanel.Children.Count;
@@ -412,6 +418,7 @@ namespace HlsView
                     btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                     btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
+                    btnGames[i].Click += GameList_Click_OnDemand;
                     btnGames[i].Width = 450;
 
                     txtInfo[i] = new TextBlock { Text = "Original Air Date: " + game["date"].ToString()+" :: " + game["feedType"].ToString(), FontSize = 14 };

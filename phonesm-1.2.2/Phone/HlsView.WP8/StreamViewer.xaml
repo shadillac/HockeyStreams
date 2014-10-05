@@ -42,34 +42,17 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="2"
+                    Grid.Row="1"
+                    Margin="418,411,0,10"
                     Orientation="Horizontal">
-            <Button Content="Play"
-                    Height="Auto"
-                    Name="playButton"
-                    Click="play_Click"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    BorderThickness="2" />
-            <Button Content="Stop"
-                    Height="Auto"
-                    Name="stopButton"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    BorderThickness="2"
-                    Click="stopButton_Click" />
             <Button Content="Wake"
+                    Visibility="Collapsed"
                     Height="Auto"
                     Name="wakeButton"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     BorderThickness="2"
                     Click="wakeButton_Click" />
-            <Button Content="-"
-                    Click="minusButton_Click" />
-            <Button Content="+"
-                    Click="plusButton_Click" />
             <TextBlock Name="PositionBox"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
@@ -81,15 +64,37 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="383*"/>
+                <ColumnDefinition Width="337*"/>
+            </Grid.ColumnDefinitions>
             <TextBlock Name="errorBox"
-                       Visibility="Collapsed" />
+                       Visibility="Collapsed" Grid.ColumnSpan="2" />
             <MediaElement HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
                           Name="mediaElement1"
                           AutoPlay="True"
                           MediaFailed="mediaElement1_MediaFailed"
                           MediaEnded="mediaElement1_MediaEnded"
-                          CurrentStateChanged="mediaElement1_CurrentStateChanged" BufferingProgressChanged="mediaElement1_BufferingProgressChanged" />
+                          CurrentStateChanged="mediaElement1_CurrentStateChanged" BufferingProgressChanged="mediaElement1_BufferingProgressChanged" Margin="0,0,0,81" Grid.ColumnSpan="2" />
+            <Button Content="Fast Fwd"
+            	Click="plusButton_Click" Margin="275,396,306,7" Grid.ColumnSpan="2" />
+            <Button Content="Rewind"
+            	Click="minusButton_Click" Margin="161,396,96,7" />
+            <Button Content="Play"
+            	Height="Auto"
+            	x:Name="playButton"
+            	Click="play_Click"
+            	HorizontalAlignment="Left"
+            	VerticalAlignment="Center"
+            	BorderThickness="2" Margin="0,396,0,7" />
+            <Button Content="Stop"
+            	Height="Auto"
+            	x:Name="stopButton"
+            	HorizontalAlignment="Left"
+            	VerticalAlignment="Center"
+            	BorderThickness="2"
+            	Click="stopButton_Click" Margin="75,396,0,7" />
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
