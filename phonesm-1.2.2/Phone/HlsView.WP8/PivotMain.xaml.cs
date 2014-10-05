@@ -43,6 +43,9 @@ namespace HlsView
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
+            string authToken = (string)userSettings["Token"];
+            string favteam = (string)userSettings["FavTeam"];
+            btnTeam.Content = favteam;
             List<Teams> source = new List<Teams>();
             source.Add(new Teams("Abbotsford Heat", "AHL"));
             source.Add(new Teams("Adirondack Phantoms", "AHL"));
@@ -232,11 +235,19 @@ namespace HlsView
                 MessageBox.Show("No games found for this day.");
             }
 
-            if (o["status"].ToString()=="Failed")
+            try
             {
-                MessageBox.Show("Please re-enter your credentials.");
-                NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+                if (o["status"].ToString() == "Failed")
+                {
+                    MessageBox.Show("Please re-enter your credentials.");
+                    NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+                }
             }
+            catch (NullReferenceException)
+            {
+
+            }
+            
 
             try
             {
@@ -249,7 +260,7 @@ namespace HlsView
 
                 foreach (JToken game in o["schedule"])
                 {
-                    btnGames[i] = new Button { Content = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), FontSize = 14, Tag = game["id"].ToString() };
+                    btnGames[i] = new Button { Content = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), FontSize = 16, Tag = game["id"].ToString() };
                     btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                     btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
@@ -263,7 +274,7 @@ namespace HlsView
                     
                     ContentPanel.Children.Add(btnGames[i]);
 
-                    txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(),FontSize = 12 };
+                    txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(),FontSize = 14 };
                     txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                     txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 50, 0, 0);
@@ -310,11 +321,28 @@ namespace HlsView
             //GET TODAYS LIVE GAMES
             WebClient wc = new WebClient();
             wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler;
-            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetLive?date="+liveDate.Value.Value.Date.ToShortDateString()+"&token=" + authToken));
+            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetLive?date=" + liveDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken));
         }
 
         private void ondemandDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
+            //GET TOKEN FROM MEMORY
+            string authToken = (string)userSettings["Token"];
+            string favteam = (string)userSettings["FavTeam"];
+
+            RemoveContent();
+
+            //GET TODAYS LIVE GAMES
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
+            if (chkDate.IsChecked == true)
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
 
         }
 
@@ -344,12 +372,18 @@ namespace HlsView
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
-            btnTeam.Content = favteam;
 
             //GET TODAYS LIVE GAMES
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
-            webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team="+favteam+"&token=" + authToken));
+            if (chkDate.IsChecked == true)
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
         }
         void OnDemandDownloadCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
@@ -366,6 +400,7 @@ namespace HlsView
             try
             {
                 Button[] btnGames = new Button[o["ondemand"].Count()];
+                TextBlock[] txtInfo = new TextBlock[o["ondemand"].Count()];
                 int heightMargin = 0;
                 int horizMargin = 0;
                 int i = 0;
@@ -373,15 +408,21 @@ namespace HlsView
 
                 foreach (JToken game in o["ondemand"])
                 {
-                    btnGames[i] = new Button { Content = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), FontSize = 14, Tag = game["id"].ToString() };
+                    btnGames[i] = new Button { Content = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), FontSize = 16, Tag = game["id"].ToString() };
                     btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                     btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
                     btnGames[i].Width = 450;
+
+                    txtInfo[i] = new TextBlock { Text = "Original Air Date: " + game["date"].ToString()+" :: " + game["feedType"].ToString(), FontSize = 14 };
+                    txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                    txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    txtInfo[i].Margin = new Thickness(horizMargin + 185, heightMargin + 50, 0, 0);
                     
                     ODContentPanel.Children.Add(btnGames[i]);
+                    ODContentPanel.Children.Add(txtInfo[i]);
 
-                    heightMargin = heightMargin + 50;
+                    heightMargin = heightMargin + 65;
                     i++;
                 }
             }
@@ -403,6 +444,35 @@ namespace HlsView
             btnTeam.Content = s.TeamName;
             teamPicker.Visibility = System.Windows.Visibility.Collapsed;
             ODContentPanel.Visibility = System.Windows.Visibility.Visible;
+            //GET TOKEN FROM MEMORY
+            string authToken = (string)userSettings["Token"];
+            string favteam = (string)userSettings["FavTeam"];
+
+            RemoveContent();
+            
+            //GET TODAYS LIVE GAMES
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
+            if (chkDate.IsChecked==true)
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            
+
+        }
+
+        private void RemoveContent()
+        {
+            int contentLength = ODContentPanel.Children.Count;
+            for (int child = 0; child < contentLength; child++)
+            {
+                ODContentPanel.Children.RemoveAt(0);
+
+            }
         }
 
         private void chkDate_Checked(object sender, RoutedEventArgs e)
@@ -410,19 +480,26 @@ namespace HlsView
             ondemandDate.IsEnabled = true;
         }
 
-        private void chkTeams_Checked(object sender, RoutedEventArgs e)
-        {
-            btnTeam.IsEnabled = true;
-        }
 
         private void chkDate_Unchecked(object sender, RoutedEventArgs e)
         {
             ondemandDate.IsEnabled = false;
-        }
+            string authToken = (string)userSettings["Token"];
+            string favteam = (string)userSettings["FavTeam"];
 
-        private void chkTeams_Unchecked(object sender, RoutedEventArgs e)
-        {
-            btnTeam.IsEnabled = false;
+            RemoveContent();
+
+            //GET TODAYS LIVE GAMES
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
+            if (chkDate.IsChecked == true)
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
         }
 
         private void pvtOnDemand_Loaded(object sender, RoutedEventArgs e)
@@ -436,7 +513,6 @@ namespace HlsView
                 ondemandDate.IsEnabled = false;
             }
 
-            chkTeams.IsChecked = true;
         }
 
         

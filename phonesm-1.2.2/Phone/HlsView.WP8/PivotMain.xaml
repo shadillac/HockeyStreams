@@ -65,16 +65,15 @@
             <!--Pivot item two-->
             <phone:PivotItem Header="OnDemand" Name="pvtOnDemand" FontSize="16" Margin="12,167,12,0" Loaded="pvtOnDemand_Loaded">
                 <Grid>
-                    <toolkit:DatePicker x:Name="ondemandDate" Margin="31,-182,33,405" ValueChanged="ondemandDate_ValueChanged"/>
+                    <toolkit:DatePicker x:Name="ondemandDate" Margin="31,-182,0,405" ValueChanged="ondemandDate_ValueChanged"/>
                     <CheckBox x:Name="chkDate" Content="" HorizontalAlignment="Left" Margin="-8,-182,0,0" VerticalAlignment="Top" Checked="chkDate_Checked" Unchecked="chkDate_Unchecked"/>
-                    <CheckBox x:Name="chkTeams" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,-112,0,0" Checked="chkTeams_Checked" Unchecked="chkTeams_Unchecked"/>
-                    <Button x:Name="btnTeam" Content="" HorizontalAlignment="Right" Margin="0,-112,33,0" VerticalAlignment="Top" Width="392" Height="72" Click="btnTeam_Click"/>
+                    <Button x:Name="btnTeam" Content="" HorizontalAlignment="Right" Margin="-8,-112,0,0" VerticalAlignment="Top" Width="464" Height="72" Click="btnTeam_Click"/>
 
                     <ScrollViewer Margin="0,-40,0,0">
                         <Grid Name="ODContentPanel" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="456" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Loaded="ODContentPanel_Loaded">
-                            
+
                         </Grid>
-                        
+
                     </ScrollViewer>
                     <phone:LongListSelector
                         		x:Name="teamPicker"

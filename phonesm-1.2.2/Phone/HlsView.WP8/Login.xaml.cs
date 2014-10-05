@@ -17,6 +17,7 @@ namespace HlsView
     public partial class Login : PhoneApplicationPage
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
+        ProgressBar pgrLogin = new ProgressBar();
 
         public Login()
         {
@@ -80,6 +81,7 @@ namespace HlsView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+
             WebClient wc = new WebClient();
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             wc.UploadStringCompleted += wc_UploadStringCompleted;
