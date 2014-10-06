@@ -341,13 +341,21 @@ namespace HlsView
             //GET TODAYS LIVE GAMES
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
-            if (chkDate.IsChecked == true)
+            if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
             }
-            else
+            else if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken));
             }
 
         }
@@ -382,13 +390,21 @@ namespace HlsView
             //GET TODAYS LIVE GAMES
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
-            if (chkDate.IsChecked == true)
+            if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
             }
-            else
+            else if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken));
             }
         }
         void OnDemandDownloadCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -460,13 +476,21 @@ namespace HlsView
             //GET TODAYS LIVE GAMES
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
-            if (chkDate.IsChecked==true)
+            if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
             }
-            else
+            else if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken));
             }
             
 
@@ -499,13 +523,21 @@ namespace HlsView
             //GET TODAYS LIVE GAMES
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
-            if (chkDate.IsChecked == true)
+            if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
             }
-            else
+            else if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == true))
             {
                 webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken));
             }
         }
 
@@ -520,7 +552,75 @@ namespace HlsView
                 ondemandDate.IsEnabled = false;
             }
 
+            if (chkTeam.IsChecked == true)
+            {
+                btnTeam.IsEnabled = true;
+            }
+            else
+            {
+                btnTeam.IsEnabled = false;
+            }
+
         }
+
+        private void chkTeam_Checked(object sender, RoutedEventArgs e)
+        {
+           btnTeam.IsEnabled = true;
+           string authToken = (string)userSettings["Token"];
+           string favteam = (string)userSettings["FavTeam"];
+
+           RemoveContent();
+
+           //GET TODAYS LIVE GAMES
+           WebClient webClient = new WebClient();
+           webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
+            if ((chkDate.IsChecked==true) && (chkTeam.IsChecked==true))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked==true) && (chkTeam.IsChecked==false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy")+"&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked==false)&&(chkTeam.IsChecked==true))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false)&& (chkTeam.IsChecked ==false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken));
+            }
+        }
+
+        private void chkTeam_Unchecked(object sender, RoutedEventArgs e)
+        {
+            btnTeam.IsEnabled = false;
+            string authToken = (string)userSettings["Token"];
+            string favteam = (string)userSettings["FavTeam"];
+
+            RemoveContent();
+
+            //GET TODAYS LIVE GAMES
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringCompleted += OnDemandDownloadCompleted;
+            if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == true))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == true) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?date=" + ondemandDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == true))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?team=" + btnTeam.Content + "&token=" + authToken));
+            }
+            else if ((chkDate.IsChecked == false) && (chkTeam.IsChecked == false))
+            {
+                webClient.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken));
+            }
+        }
+
 
         
 

@@ -67,7 +67,8 @@
                 <Grid>
                     <toolkit:DatePicker x:Name="ondemandDate" Margin="31,-182,0,405" ValueChanged="ondemandDate_ValueChanged"/>
                     <CheckBox x:Name="chkDate" Content="" HorizontalAlignment="Left" Margin="-8,-182,0,0" VerticalAlignment="Top" Checked="chkDate_Checked" Unchecked="chkDate_Unchecked"/>
-                    <Button x:Name="btnTeam" Content="" HorizontalAlignment="Right" Margin="-8,-112,0,0" VerticalAlignment="Top" Width="464" Height="72" Click="btnTeam_Click"/>
+                    <CheckBox x:Name="chkTeam" Content="" HorizontalAlignment="Left" Margin="-8,-113,0,0" VerticalAlignment="Top" Width="58" Checked="chkTeam_Checked" Unchecked="chkTeam_Unchecked"/>
+                    <Button x:Name="btnTeam" Content="" HorizontalAlignment="Right" Margin="0,-112,0,0" VerticalAlignment="Top" Width="425" Height="72" Click="btnTeam_Click"/>
 
                     <ScrollViewer Margin="0,-40,0,0">
                         <Grid Name="ODContentPanel" HorizontalAlignment="Left" Height="520" VerticalAlignment="Top" Width="456" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Loaded="ODContentPanel_Loaded">
