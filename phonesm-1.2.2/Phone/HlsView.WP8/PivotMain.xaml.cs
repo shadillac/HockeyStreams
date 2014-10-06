@@ -39,11 +39,19 @@ namespace HlsView
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
         List<string> goodDates = new List<string>();
+        private ProgressIndicator _progressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
 
         public PivotMain()
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
+            //progress indicator construct
+            _progressIndicator.IsVisible = false;
+            _progressIndicator.IsIndeterminate = true;
+            _progressIndicator.Text = "Getting Info from HockeyStreams.com.";
+            SystemTray.SetProgressIndicator(this, _progressIndicator);
+            ShowProgressIndicator();
+
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
             btnTeam.Content = favteam;
@@ -202,12 +210,14 @@ namespace HlsView
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
                 MessageBox.Show("No Dates found for OnDemand Videos");
+                HideProgressIndicator();
             }
 
             foreach (JToken date in o["dates"])
             {
                 goodDates.Add(date.ToString());
             }
+            HideProgressIndicator();
         }
         private void BuildLocalizedApplicationBar()
         {
@@ -254,7 +264,7 @@ namespace HlsView
             }
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
-                MessageBox.Show("No games found for this day.");
+                MessageBox.Show("No Live games found for this day.");
             }
 
             try
@@ -308,8 +318,10 @@ namespace HlsView
             }
             catch
             {
+                HideProgressIndicator();
 
             }
+            HideProgressIndicator();
 
         }
 
@@ -334,8 +346,21 @@ namespace HlsView
             NavigationService.Navigate(new Uri("/OnDemandDetail.xaml?streamID=" + target.Tag.ToString(), UriKind.Relative));
         }
 
+        void ShowProgressIndicator()
+        {
+            _progressIndicator.IsVisible = true;
+            _progressIndicator.IsIndeterminate = false;
+        }
+
+        void HideProgressIndicator()
+        {
+            _progressIndicator.IsVisible = false;
+            _progressIndicator.IsIndeterminate = true;
+        }
+
         private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
+            ShowProgressIndicator();
             int contentLength = ContentPanel.Children.Count;
             for(int child=0;child < contentLength;child++)
             {
@@ -354,6 +379,7 @@ namespace HlsView
 
         private void ondemandDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
+            ShowProgressIndicator();
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -391,7 +417,7 @@ namespace HlsView
 
         private void pvtLivePivot_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            ShowProgressIndicator();
 
             if (liveDate.Value.Value.Date.ToShortDateString() == DateTime.Now.Date.ToShortDateString())
             {
@@ -412,6 +438,7 @@ namespace HlsView
 
         private void ODContentPanel_Loaded(object sender, RoutedEventArgs e)
         {
+            ShowProgressIndicator();
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -452,7 +479,8 @@ namespace HlsView
             }
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
-                MessageBox.Show("No games found for this day.");
+                MessageBox.Show("No OnDemand games found matching these criteria.");
+                HideProgressIndicator();
             }
 
             try
@@ -487,8 +515,9 @@ namespace HlsView
             }
             catch
             {
-
+                HideProgressIndicator();
             }
+            HideProgressIndicator();
         }
 
         private void btnTeam_Click(object sender, RoutedEventArgs e)
@@ -499,6 +528,7 @@ namespace HlsView
 
         private void teamPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ShowProgressIndicator();
             Teams s = teamPicker.SelectedItem as Teams;
             btnTeam.Content = s.TeamName;
             teamPicker.Visibility = System.Windows.Visibility.Collapsed;
@@ -550,6 +580,7 @@ namespace HlsView
 
         private void chkDate_Unchecked(object sender, RoutedEventArgs e)
         {
+            ShowProgressIndicator();
             ondemandDate.IsEnabled = false;
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -601,6 +632,7 @@ namespace HlsView
 
         private void chkTeam_Checked(object sender, RoutedEventArgs e)
         {
+            ShowProgressIndicator();
            btnTeam.IsEnabled = true;
            string authToken = (string)userSettings["Token"];
            string favteam = (string)userSettings["FavTeam"];
@@ -630,6 +662,7 @@ namespace HlsView
 
         private void chkTeam_Unchecked(object sender, RoutedEventArgs e)
         {
+            ShowProgressIndicator();
             btnTeam.IsEnabled = false;
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];

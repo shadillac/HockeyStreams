@@ -15,14 +15,32 @@ namespace HlsView
     public partial class LiveStreamDetail : PhoneApplicationPage
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
+        private ProgressIndicator _progressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
 
         public LiveStreamDetail()
         {
             InitializeComponent();
         }
 
+        void ShowProgressIndicator()
+        {
+            _progressIndicator.IsVisible = true;
+            _progressIndicator.IsIndeterminate = false;
+        }
+
+        void HideProgressIndicator()
+        {
+            _progressIndicator.IsVisible = false;
+            _progressIndicator.IsIndeterminate = true;
+        }
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //set progress indicator
+            _progressIndicator.Text = "Getting Stream Details";
+            SystemTray.SetProgressIndicator(this, _progressIndicator);
+            ShowProgressIndicator();
+
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
             string streamID;
@@ -57,6 +75,7 @@ namespace HlsView
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
                 MessageBox.Show("Game Not Found.");
+                HideProgressIndicator();
             }
 
             try
@@ -77,7 +96,9 @@ namespace HlsView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                HideProgressIndicator();
             }
+            HideProgressIndicator();
         }
 
         void launchStream_Click(object sender, RoutedEventArgs e)

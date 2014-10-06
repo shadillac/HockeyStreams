@@ -16,8 +16,8 @@
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="AddrBookItemTemplate">
             <StackPanel VerticalAlignment="Top">
-                <TextBlock FontWeight="Bold"  Text="{Binding TeamName}" />
-                <TextBlock Text="{Binding League}" />
+                <TextBlock FontWeight="Bold"  Text="{Binding TeamName}" FontSize="24" />
+                <TextBlock Text="{Binding League}" FontSize="20" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="AddrBookGroupHeaderTemplate">

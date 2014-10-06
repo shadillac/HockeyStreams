@@ -16,6 +16,7 @@ namespace HlsView
     public partial class OnDemandDetail : PhoneApplicationPage
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
+        private ProgressIndicator _progressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
 
         public OnDemandDetail()
         {
@@ -28,12 +29,26 @@ namespace HlsView
             for (int child = 0; child < contentLength; child++)
             {
                 ContentPanel.Children.RemoveAt(0);
-
             }
+        }
+
+        void ShowProgressIndicator()
+        {
+            _progressIndicator.IsVisible = true;
+            _progressIndicator.IsIndeterminate = false;
+        }
+
+        void HideProgressIndicator()
+        {
+            _progressIndicator.IsVisible = false;
+            _progressIndicator.IsIndeterminate = true;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            _progressIndicator.Text = "Getting OnDemand Details";
+            SystemTray.SetProgressIndicator(this, _progressIndicator);
+            ShowProgressIndicator();
 
             RemoveContent();
 
@@ -71,6 +86,7 @@ namespace HlsView
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
                 MessageBox.Show("Game Not Found.");
+                HideProgressIndicator();
             }
 
             try
@@ -113,6 +129,7 @@ namespace HlsView
                     launchStream.Background = GetColorFromHexa("#FF0000");
                     launchStream.Foreground = GetColorFromHexa("#000000");
                     ContentPanel.Children.Add(launchStream);
+                    HideProgressIndicator();
                 }
                 
 
@@ -142,6 +159,7 @@ namespace HlsView
                     awayHighlights.Background = GetColorFromHexa("#FF0000");
                     awayHighlights.Foreground = GetColorFromHexa("#000000");
                     ContentPanel.Children.Add(awayHighlights);
+                    
                 }
 
                 try
@@ -230,7 +248,9 @@ namespace HlsView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                HideProgressIndicator();
             }
+            HideProgressIndicator();
         }
 
         public SolidColorBrush GetColorFromHexa(string hexaColor)

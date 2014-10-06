@@ -17,7 +17,7 @@ namespace HlsView
     public partial class Login : PhoneApplicationPage
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
-        ProgressBar pgrLogin = new ProgressBar();
+        private ProgressIndicator _progressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
 
         public Login()
         {
@@ -39,6 +39,9 @@ namespace HlsView
             catch (System.Reflection.TargetInvocationException)
             {
                 //MessageBox.Show("Username or Password Incorrect.  Please verify and reenter.");
+                btnLogin.IsEnabled = true;
+                _progressIndicator.IsVisible = false;
+                _progressIndicator.IsIndeterminate = false;
             }
 
             if ((string)o["status"]=="Success")
@@ -66,21 +69,35 @@ namespace HlsView
                     
                     //GOOD ACCOUNT - AUTHENTICATE AND NAVIGATE.
                     NavigationService.Navigate(new Uri("/PivotMain.xaml", UriKind.Relative));
+                    _progressIndicator.IsVisible = false;
+                    _progressIndicator.IsIndeterminate = false;
        
                 }
                 else
                 {
                     MessageBox.Show("Your membership is not a premium membership.  Premium Membership is needed in order to access content.");
+                    btnLogin.IsEnabled = true;
+                    _progressIndicator.IsVisible = false;
+                    _progressIndicator.IsIndeterminate = false;
                 }
             }
             else
             {
                 MessageBox.Show("Username or Password incorrect.  Please verify and enter again.");
+                btnLogin.IsEnabled = true;
+                _progressIndicator.IsVisible = false;
+                _progressIndicator.IsIndeterminate = false;
             }
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            //Create progress indicator.
+            _progressIndicator.IsVisible = true;
+            _progressIndicator.IsIndeterminate = true;
+            _progressIndicator.Text = "Logging In";
+            SystemTray.SetProgressIndicator(this, _progressIndicator);
+            btnLogin.IsEnabled = false;
 
             WebClient wc = new WebClient();
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
