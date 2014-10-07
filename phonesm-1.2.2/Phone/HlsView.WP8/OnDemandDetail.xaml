@@ -26,11 +26,11 @@
             <TextBlock x:Name="atText" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,221,26" FontSize="20" HorizontalAlignment="Right" Width="21" RenderTransformOrigin="0.517,-0.28" TextAlignment="Center"/>
             <TextBlock x:Name="homeText" Style="{StaticResource PhoneTextNormalStyle}" Margin="247,0,0,26" FontSize="20" HorizontalAlignment="Left" Width="221" TextAlignment="Center"/>
             <TextBlock x:Name="txtGameTime" HorizontalAlignment="Left" Margin="72,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="21" FontSize="16" TextAlignment="Center"/>
-            <Image Margin="-111,-48,-110,40" Source="/Assets/BkGrnd.png" Opacity="0.2"/>
+           
         </Grid>
 
         <!--ContentPanel - place additional content here-->
-        <ScrollViewer Margin="0,10,0,0" Grid.Row="1">
+        <ScrollViewer Margin="0,164,0,0" Grid.Row="1">
             
             <Grid x:Name="ContentPanel" />
         </ScrollViewer>

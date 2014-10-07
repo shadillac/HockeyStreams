@@ -19,13 +19,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
 
         <!--TitlePanel contains the name of the application and page title-->
         <Grid Margin="12,17,0,28">
             <TextBlock x:Name="awayText" Style="{StaticResource PhoneTextNormalStyle}" Margin="0" FontSize="14" HorizontalAlignment="Left" Width="221" TextAlignment="Center"/>
             <TextBlock x:Name="atText" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,226,0" FontSize="14" HorizontalAlignment="Right" Width="16" RenderTransformOrigin="0.517,-0.28"/>
             <TextBlock x:Name="homeText" Style="{StaticResource PhoneTextNormalStyle}" Margin="247,0,0,0" FontSize="14" HorizontalAlignment="Left" Width="221" TextAlignment="Center"/>
-            <Image Margin="-14,0,0,940" Source="/Assets/BkGrnd.png" Opacity="0.2"/>
+            
         </Grid>
 
         <!--ContentPanel - place additional content here-->
