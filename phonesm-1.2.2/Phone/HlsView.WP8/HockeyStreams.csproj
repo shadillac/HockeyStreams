@@ -173,6 +173,7 @@
     <Content Include="Assets\BkGrnd.png" />
     <Content Include="Assets\SNES.png" />
     <Content Include="Assets\Tile.PNG" />
+    <Content Include="Assets\Tile2.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
