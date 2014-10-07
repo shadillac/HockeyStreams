@@ -33,8 +33,9 @@
             <toolkit:ListPicker Header="Location" x:Name="locationPicker" Margin="23,123,25,528" SelectionChanged="locationPicker_SelectionChanged" Loaded="locationPicker_Loaded"/>
             <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="52,628,0,0" VerticalAlignment="Top" Click="btnSave_Click" Width="157" Height="92"/>
             <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="234,628,0,0" VerticalAlignment="Top" Click="btnCancel_Click" Width="157" Height="92"/>
-            <Button Name="btnIP" Content="Create IP Exception" HorizontalAlignment="Left" Margin="85,268,0,0" VerticalAlignment="Top" Click="btnIP_Click_1" />
-            
+            <Button Name="btnIP" Content="Create IP Exception" HorizontalAlignment="Left" Margin="94,436,0,0" VerticalAlignment="Top" Click="btnIP_Click_1" />
+            <TextBlock HorizontalAlignment="Left" Margin="23,344,0,0" TextWrapping="Wrap" Text="HockeyStreams.com by default only allows users to connect to their service with one IP at a time.  To change IPs youll need to update your IP Exception.   If you have problems with streaming, please use the button below." VerticalAlignment="Top" Height="92" Width="410" FontSize="16"/>
+
 
         </Grid>
 

@@ -16,15 +16,15 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Image HorizontalAlignment="Left" Height="804" VerticalAlignment="Top" Width="517" Source="/Assets/SNES.jpg" Opacity="0.15" Margin="-12,-36,-25,0"/>
+        <Image Source="/BkGrnd.png" Opacity="0.20" Margin="-93,-34,-86,0"/>
         <!--Pivot Control-->
         <phone:Pivot Title="TOP CHEDDAR HOCKEY VIDEOS" Loaded="Pivot_Loaded">
             <!--Pivot item one-->
             <phone:PivotItem Header="About">
                 <ScrollViewer>
                     <Grid Name="AboutGrid" Margin="-10,0,10,0">
-                        <TextBlock Name="tbTitle" Text="Top Cheddar Hockey Videos" Margin="10,0,109,567" Foreground="#FFE6FD00" FontFamily="Sitka Small" FontSize="24" HorizontalAlignment="Center" />
-                        <TextBox Text="By ShadNick (Shad Morris and Nick Ciaravella)" Margin="91,10,0,534" TextChanged="TextBox_TextChanged" FontSize="16" SelectionBackground="{x:Null}" SelectionForeground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                        <TextBlock Name="tbTitle" Text="Top Cheddar Powered by HockeyStreams.com" Margin="10,0,-61,565" Foreground="#FFE6FD00" FontFamily="Sitka Small" FontSize="18" HorizontalAlignment="Left" Width="507" />
+                        <TextBox Text="By ShadNick (Shad Morris and Nick Ciaravella)" Margin="91,10,0,534" TextChanged="TextBox_TextChanged" FontSize="14" SelectionBackground="{x:Null}" SelectionForeground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
                         <HyperlinkButton Name="hlbReview" Content="Review Us!" Margin="10,62,10,495" Foreground="#FFE8FF00" FontFamily="Sitka Subheading" FontSize="20" Click="hlbReview_Click" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,126,0,0" TextWrapping="Wrap" Text="Version 1.0.0.0" VerticalAlignment="Top" FontFamily="Sitka Subheading" Foreground="#FFF0FB00"/>
                         <HyperlinkButton Name="hlbFeedBack" Content="Feedback?  Issues?" Margin="-2,178,0,0" Foreground="#FFE8FF00" FontFamily="Sitka Subheading" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="189" Click="hlbFeedBack_Click" />
@@ -55,7 +55,7 @@
                 		<LineBreak/>
                 		<Run Text="It is our intention to respect the intellectual property rights of others. In connection with this we will not knowingly post content or other works of authorship that infringe the copyright rights of others.  We're just fans of the game that want to make this content available for users on this platform."/>
                         </TextBlock>
-                        <TextBlock FontFamily="Sitka Subheading" Foreground="#FFF0FB00" Text="Top Cheddar Hockey Video" Margin="10,255,157,402"/>
+                        <TextBlock FontFamily="Sitka Subheading" Foreground="#FFF0FB00" Text="Top Cheddar Hockey Streams" Margin="10,255,157,402"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,3,0,0" TextWrapping="Wrap" Text="Disclaimer:" VerticalAlignment="Top" FontFamily="Sitka Subheading" Foreground="#FFF0FB00"/>
                         <TextBlock Opacity="0.8" Text="Created by Shad Morris and Nick Ciaravella" Margin="10,280,208,382" FontSize="12"/>
                         <TextBlock Opacity="0.8" Text="This app uses content that is sourced from the internet without need of special or granted permissions.  We have not in any way circumvented, reverse engineered, deciphered, decompiled, disassembled, decrypted, or otherwise altered or interfered with (or attempted, encouraged, or supported anyone else's attempt to engage in such activities) any of the software comprising or in any way making up a part of the Services. We in no way have used or distributed the use of tools designed for compromising any security (e.g., password guessing programs, cracking tools, or network probing tools)." Margin="10,301,0,166" FontSize="16" TextWrapping="Wrap"/>
