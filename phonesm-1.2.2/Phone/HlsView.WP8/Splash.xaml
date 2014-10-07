@@ -21,13 +21,11 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Top Cheddar Hockey Streams" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="SPLASH" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <StackPanel Grid.Row="0" Margin="12,17,0,28"/>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Image Height="761" Margin="-28,-38,-31,0" VerticalAlignment="Top" Source="/Assets/SNES.png"/>
 
         </Grid>
     </Grid>
