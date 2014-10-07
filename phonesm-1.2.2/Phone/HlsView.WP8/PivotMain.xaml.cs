@@ -52,6 +52,9 @@ namespace HlsView
             SystemTray.SetProgressIndicator(this, _progressIndicator);
             ShowProgressIndicator();
 
+            btnTeam.IsEnabled = true;
+            chkTeam.IsChecked = true;
+
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
             btnTeam.Content = favteam;
@@ -288,7 +291,7 @@ namespace HlsView
                 int heightMargin = 0;
                 int horizMargin = 0;
                 int i = 0;
-                ContentPanel.Height = 70 * o["schedule"].Count();
+                ContentPanel.Height = 135 * o["schedule"].Count();
 
                 foreach (JToken game in o["schedule"])
                 {
@@ -297,6 +300,7 @@ namespace HlsView
                     btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
                     btnGames[i].Width = 450;
+                    btnGames[i].Height = 100;
                     if (game["isPlaying"].ToString() == "1")
                     {
                         btnGames[i].Background = GetColorFromHexa("#FFFF00");
@@ -309,10 +313,10 @@ namespace HlsView
                     txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(),FontSize = 14 };
                     txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                     txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 50, 0, 0);
+                    txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 90, 0, 0);
                     ContentPanel.Children.Add(txtInfo[i]);
 
-                    heightMargin = heightMargin + 65;
+                    heightMargin = heightMargin + 110;
                     i++;
                 }
             }
@@ -479,7 +483,7 @@ namespace HlsView
             }
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
-                MessageBox.Show("No OnDemand games found matching these criteria.");
+                //MessageBox.Show("No OnDemand games found matching these criteria.");
                 HideProgressIndicator();
             }
 
@@ -490,7 +494,7 @@ namespace HlsView
                 int heightMargin = 0;
                 int horizMargin = 0;
                 int i = 0;
-                ODContentPanel.Height = 70 * o["ondemand"].Count();
+                ODContentPanel.Height = 135 * o["ondemand"].Count();
 
                 foreach (JToken game in o["ondemand"])
                 {
@@ -500,16 +504,17 @@ namespace HlsView
                     btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
                     btnGames[i].Click += GameList_Click_OnDemand;
                     btnGames[i].Width = 450;
+                    btnGames[i].Height = 100;
 
                     txtInfo[i] = new TextBlock { Text = "Original Air Date: " + game["date"].ToString()+" :: " + game["feedType"].ToString(), FontSize = 14 };
                     txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                     txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    txtInfo[i].Margin = new Thickness(horizMargin + 185, heightMargin + 50, 0, 0);
+                    txtInfo[i].Margin = new Thickness(horizMargin + 185, heightMargin + 90, 0, 0);
                     
                     ODContentPanel.Children.Add(btnGames[i]);
                     ODContentPanel.Children.Add(txtInfo[i]);
 
-                    heightMargin = heightMargin + 65;
+                    heightMargin = heightMargin + 110;
                     i++;
                 }
             }
@@ -522,12 +527,14 @@ namespace HlsView
 
         private void btnTeam_Click(object sender, RoutedEventArgs e)
         {
+            chkTeam.IsEnabled = false;
             teamPicker.Visibility = System.Windows.Visibility.Visible;
             ODContentPanel.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void teamPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            chkTeam.IsEnabled = true;
             ShowProgressIndicator();
             Teams s = teamPicker.SelectedItem as Teams;
             btnTeam.Content = s.TeamName;
@@ -632,7 +639,7 @@ namespace HlsView
 
         private void chkTeam_Checked(object sender, RoutedEventArgs e)
         {
-            ShowProgressIndicator();
+           ShowProgressIndicator();
            btnTeam.IsEnabled = true;
            string authToken = (string)userSettings["Token"];
            string favteam = (string)userSettings["FavTeam"];
