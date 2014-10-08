@@ -52,9 +52,6 @@ namespace HlsView
             SystemTray.SetProgressIndicator(this, _progressIndicator);
             ShowProgressIndicator();
 
-            btnTeam.IsEnabled = true;
-            chkTeam.IsChecked = true;
-
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
             btnTeam.Content = favteam;
