@@ -26,6 +26,7 @@
             <TextBlock x:Name="awayText" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,0,26" FontSize="20" HorizontalAlignment="Left" Width="213" TextAlignment="Right"/>
             <TextBlock x:Name="atText" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,219,26" FontSize="20" HorizontalAlignment="Right" Width="21" RenderTransformOrigin="0.517,-0.28" TextAlignment="Center"/>
             <TextBlock x:Name="homeText" Style="{StaticResource PhoneTextNormalStyle}" Margin="244,0,-10,26" FontSize="20" HorizontalAlignment="Left" Width="224"/>
+            <Image Margin="-39,-49,-55,42" Source="/Assets/BkGrnd.png" Opacity="0.2"/>
         </Grid>
 
         <!--ContentPanel - place additional content here-->

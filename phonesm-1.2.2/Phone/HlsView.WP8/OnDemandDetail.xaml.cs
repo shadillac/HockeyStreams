@@ -112,10 +112,9 @@ namespace HlsView
                             }
                             else
                             {
-                                Button launchStream = new Button { Content = "Full Game Not Available", Margin = new Thickness(55, 10, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                                Button launchStream = new Button { Content = "Full Game", Margin = new Thickness(80, 10, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                                 launchStream.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                launchStream.Background = GetColorFromHexa("#FF0000");
-                                launchStream.Foreground = GetColorFromHexa("#000000");
+                                launchStream.IsEnabled = false;
                                 ContentPanel.Children.Add(launchStream);
                             }
                             
@@ -124,10 +123,9 @@ namespace HlsView
                 }
                 catch (Exception)
                 {
-                    Button launchStream = new Button { Content = "Full Game Not Available", Margin = new Thickness(55, 10, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                    Button launchStream = new Button { Content = "Full Game", Margin = new Thickness(80, 10, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                     launchStream.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    launchStream.Background = GetColorFromHexa("#FF0000");
-                    launchStream.Foreground = GetColorFromHexa("#000000");
+                    launchStream.IsEnabled = false;
                     ContentPanel.Children.Add(launchStream);
                     HideProgressIndicator();
                 }
@@ -144,20 +142,18 @@ namespace HlsView
                     }
                     else
                     {
-                        Button awayHighlights = new Button { Content = "Away Highlights Not Available", Margin = new Thickness(55, 120, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                        Button awayHighlights = new Button { Content = "Away Highlights", Margin = new Thickness(80, 120, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                         awayHighlights.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        awayHighlights.Background = GetColorFromHexa("#FF0000");
-                        awayHighlights.Foreground = GetColorFromHexa("#000000");
+                        awayHighlights.IsEnabled = false;
                         ContentPanel.Children.Add(awayHighlights);
                     }
                     
                 }
                 catch (Exception)
                 {
-                    Button awayHighlights = new Button { Content = "Away Highlights Not Available", Margin = new Thickness(55, 120, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                    Button awayHighlights = new Button { Content = "Away Highlights", Margin = new Thickness(80, 120, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                     awayHighlights.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    awayHighlights.Background = GetColorFromHexa("#FF0000");
-                    awayHighlights.Foreground = GetColorFromHexa("#000000");
+                    awayHighlights.IsEnabled = false;
                     ContentPanel.Children.Add(awayHighlights);
                     
                 }
@@ -173,17 +169,16 @@ namespace HlsView
                     }
                     else
                     {
-                        Button homeHighlights = new Button { Content = "Home Highlights Not Available", Margin = new Thickness(55, 230, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                        Button homeHighlights = new Button { Content = "Home Highlights", Margin = new Thickness(80, 230, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                         homeHighlights.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        homeHighlights.Background = GetColorFromHexa("#FF0000");
-                        homeHighlights.Foreground = GetColorFromHexa("#000000");
+                        homeHighlights.IsEnabled = false;
                         ContentPanel.Children.Add(homeHighlights);
                     }
                     
                 }
                 catch (Exception)
                 {
-                    Button homeHighlights = new Button { Content = "Home Highlights Not Available", Margin = new Thickness(55, 230, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                    Button homeHighlights = new Button { Content = "Home Highlights", Margin = new Thickness(80, 230, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                     homeHighlights.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     homeHighlights.Background = GetColorFromHexa("#FF0000");
                     homeHighlights.Foreground = GetColorFromHexa("#000000");
@@ -201,19 +196,17 @@ namespace HlsView
                     }
                     else
                     {
-                        Button awayCondensed = new Button { Content = "Away Condensed Not Available", Margin = new Thickness(55, 340, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                        Button awayCondensed = new Button { Content = "Away Condensed Game", Margin = new Thickness(80, 340, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                         awayCondensed.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        awayCondensed.Background = GetColorFromHexa("#FF0000");
-                        awayCondensed.Foreground = GetColorFromHexa("#000000");
+                        awayCondensed.IsEnabled = false;
                         ContentPanel.Children.Add(awayCondensed);
                     }
                 }
                 catch (Exception)
                 {
-                    Button awayCondensed = new Button { Content = "Away Condensed Not Available", Margin = new Thickness(55, 340, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                    Button awayCondensed = new Button { Content = "Away Condensed Game", Margin = new Thickness(80, 340, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                     awayCondensed.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    awayCondensed.Background = GetColorFromHexa("#FF0000");
-                    awayCondensed.Foreground = GetColorFromHexa("#000000");
+                    awayCondensed.IsEnabled = false;
                     ContentPanel.Children.Add(awayCondensed);
                 }
 
@@ -228,19 +221,17 @@ namespace HlsView
                     }
                     else
                     {
-                        Button homeCondensed = new Button { Content = "Home Condensed Not Available", Margin = new Thickness(55, 450, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                        Button homeCondensed = new Button { Content = "Home Condensed Game", Margin = new Thickness(80, 450, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                         homeCondensed.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        homeCondensed.Background = GetColorFromHexa("#FF0000");
-                        homeCondensed.Foreground = GetColorFromHexa("#000000");
+                        homeCondensed.IsEnabled = false;
                         ContentPanel.Children.Add(homeCondensed);
                     }
                 }
                 catch (Exception)
                 {
-                    Button homeCondensed = new Button { Content = "Home Condensed Not Available", Margin = new Thickness(55, 450, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 380, Height = 105 };
+                    Button homeCondensed = new Button { Content = "Home Condensed Game", Margin = new Thickness(80, 450, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                     homeCondensed.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    homeCondensed.Background = GetColorFromHexa("#FF0000");
-                    homeCondensed.Foreground = GetColorFromHexa("#000000");
+                    homeCondensed.IsEnabled = false;
                     ContentPanel.Children.Add(homeCondensed);
                 }
 

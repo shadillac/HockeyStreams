@@ -26,6 +26,7 @@
             <TextBlock x:Name="atText" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,0,221,26" FontSize="20" HorizontalAlignment="Right" Width="21" RenderTransformOrigin="0.517,-0.28" TextAlignment="Center"/>
             <TextBlock x:Name="homeText" Style="{StaticResource PhoneTextNormalStyle}" Margin="247,0,0,26" FontSize="20" HorizontalAlignment="Left" Width="221" TextAlignment="Center"/>
             <TextBlock x:Name="txtGameTime" HorizontalAlignment="Left" Margin="72,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Height="21" FontSize="16" TextAlignment="Center"/>
+            <Image Margin="-39,-49,-55,42" Source="/Assets/BkGrnd.png" Opacity="0.2"/>
            
         </Grid>
 
