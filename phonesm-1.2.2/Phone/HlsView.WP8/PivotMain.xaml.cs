@@ -227,10 +227,19 @@ namespace HlsView
             // Create a new menu item with the localized string from AppResources.
             ApplicationBarMenuItem appbarmenuitem = new ApplicationBarMenuItem("Settings...");
             ApplicationBarMenuItem appbarmenuitem2 = new ApplicationBarMenuItem("About");
+            ApplicationBarMenuItem appbarmenuitem3 = new ApplicationBarMenuItem("Logout");
             ApplicationBar.MenuItems.Add(appbarmenuitem);
             ApplicationBar.MenuItems.Add(appbarmenuitem2);
+            ApplicationBar.MenuItems.Add(appbarmenuitem3);
             appbarmenuitem.Click += appbarmenuitem_Click;
             appbarmenuitem2.Click += appbarmenuitem2_Click;
+            appbarmenuitem3.Click += appbarmenuitem3_Click;
+        }
+
+        void appbarmenuitem3_Click(object sender, EventArgs e)
+        {
+            userSettings.Remove("Token");
+            NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
         }
         void appbarmenuitem2_Click(object sender, EventArgs e)
         {

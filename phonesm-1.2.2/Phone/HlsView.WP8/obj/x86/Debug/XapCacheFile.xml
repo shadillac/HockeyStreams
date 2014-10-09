@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\TCHS_Debug_x86.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="10/9/2014 9:31:22 AM">
-  <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\Top Cheddar Hockey Streams.dll" archivePath="Top Cheddar Hockey Streams.dll" lastWriteTime="10/9/2014 9:31:20 AM" />
+﻿<xapCache source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\TCHS_Debug_x86.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="10/9/2014 9:37:36 AM">
+  <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\obj\x86\Debug\Top Cheddar Hockey Streams.dll" archivePath="Top Cheddar Hockey Streams.dll" lastWriteTime="10/9/2014 9:37:34 AM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="10/8/2014 4:40:23 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="10/8/2014 4:40:23 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Assets\BkGrnd.png" archivePath="Assets\BkGrnd.png" lastWriteTime="10/8/2014 4:40:24 PM" />
@@ -18,7 +18,7 @@
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="10/8/2014 4:40:25 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="10/8/2014 4:40:25 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="10/8/2014 4:40:25 PM" />
-  <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="10/9/2014 9:31:21 AM" />
+  <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="10/9/2014 9:37:35 AM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\packages\Autofac.3.3.0\lib\portable-win+net40+sl50+wp8\Autofac.dll" archivePath="Autofac.dll" lastWriteTime="10/8/2014 4:40:28 PM" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="1/1/2013 5:57:00 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="10/8/2014 4:42:52 PM" />
@@ -36,5 +36,5 @@
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\packages\Microsoft.Net.Http.2.2.18\lib\sl4-windowsphone71\System.Net.Http.Extensions.xml" archivePath="System.Net.Http.Extensions.xml" lastWriteTime="10/8/2014 4:40:31 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\packages\Microsoft.Net.Http.2.2.18\lib\sl4-windowsphone71\System.Net.Http.Primitives.xml" archivePath="System.Net.Http.Primitives.xml" lastWriteTime="10/8/2014 4:40:31 PM" />
   <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Assets\Tile2.png" archivePath="Assets\Tile2.png" lastWriteTime="10/8/2014 4:40:24 PM" />
-  <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="10/9/2014 9:31:22 AM" />
+  <file source="C:\Users\shmorris\Documents\GitHub\HockeyStreams\phonesm-1.2.2\Phone\HlsView.WP8\Bin\x86\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="10/9/2014 9:37:36 AM" />
 </xapCache>
