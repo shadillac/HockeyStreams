@@ -193,9 +193,9 @@ namespace HlsView
                 System.Threading.Thread.CurrentThread.CurrentUICulture,
                 (Teams s) => { return s.TeamName; }, true);
             teamPicker.ItemsSource = DataSource;
-            //WebClient wc = new WebClient();
-            //wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler_2;
-            //wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemandDates?token=" + authToken));
+            WebClient wc = new WebClient();
+            wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler_2;
+            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemandDates?token=" + authToken));
 
 
         }
@@ -350,13 +350,13 @@ namespace HlsView
         void ShowProgressIndicator()
         {
             _progressIndicator.IsVisible = true;
-            _progressIndicator.IsIndeterminate = false;
+            _progressIndicator.IsIndeterminate = true;
         }
 
         void HideProgressIndicator()
         {
             _progressIndicator.IsVisible = false;
-            _progressIndicator.IsIndeterminate = true;
+            _progressIndicator.IsIndeterminate = false;
         }
 
         private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)

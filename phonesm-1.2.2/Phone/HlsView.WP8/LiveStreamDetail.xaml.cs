@@ -25,13 +25,13 @@ namespace HlsView
         void ShowProgressIndicator()
         {
             _progressIndicator.IsVisible = true;
-            _progressIndicator.IsIndeterminate = false;
+            _progressIndicator.IsIndeterminate = true;
         }
 
         void HideProgressIndicator()
         {
             _progressIndicator.IsVisible = false;
-            _progressIndicator.IsIndeterminate = true;
+            _progressIndicator.IsIndeterminate = false;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
