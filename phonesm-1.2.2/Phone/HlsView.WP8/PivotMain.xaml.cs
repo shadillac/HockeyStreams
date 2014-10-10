@@ -39,18 +39,20 @@ namespace HlsView
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
         List<string> goodDates = new List<string>();
-        private ProgressIndicator _progressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
+        private ProgressIndicator _liveprogressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
+        private ProgressIndicator _ondemandprogressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
 
         public PivotMain()
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
             //progress indicator construct
-            _progressIndicator.IsVisible = false;
-            _progressIndicator.IsIndeterminate = true;
-            _progressIndicator.Text = "Getting Info from HockeyStreams.com.";
-            SystemTray.SetProgressIndicator(this, _progressIndicator);
-            ShowProgressIndicator();
+            _liveprogressIndicator.Text = "Getting Info from HockeyStreams.com.";
+            _ondemandprogressIndicator.Text = "Getting Info from HockeyStreams.com.";
+            SystemTray.SetProgressIndicator(this, _liveprogressIndicator);
+            SystemTray.SetProgressIndicator(this, _ondemandprogressIndicator);
+            ShowLiveProgressIndicator();
+            ShowOnDemandProgressIndicator();
 
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -210,14 +212,14 @@ namespace HlsView
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
                 MessageBox.Show("No Dates found for OnDemand Videos");
-                HideProgressIndicator();
+                HideOnDemandProgressIndicator();
             }
 
             foreach (JToken date in o["dates"])
             {
                 goodDates.Add(date.ToString());
             }
-            HideProgressIndicator();
+            HideOnDemandProgressIndicator();
         }
         private void BuildLocalizedApplicationBar()
         {
@@ -298,6 +300,7 @@ namespace HlsView
                 int horizMargin = 0;
                 int i = 0;
                 ContentPanel.Height = 135 * o["schedule"].Count();
+                RemoveLiveContent();
 
                 foreach (JToken game in o["schedule"])
                 {
@@ -328,10 +331,10 @@ namespace HlsView
             }
             catch
             {
-                HideProgressIndicator();
+                HideLiveProgressIndicator();
 
             }
-            HideProgressIndicator();
+            HideLiveProgressIndicator();
 
         }
 
@@ -356,27 +359,43 @@ namespace HlsView
             NavigationService.Navigate(new Uri("/OnDemandDetail.xaml?streamID=" + target.Tag.ToString(), UriKind.Relative));
         }
 
-        void ShowProgressIndicator()
+        void ShowLiveProgressIndicator()
         {
-            _progressIndicator.IsVisible = true;
-            _progressIndicator.IsIndeterminate = true;
+            _liveprogressIndicator.IsVisible = true;
+            _liveprogressIndicator.IsIndeterminate = true;
         }
 
-        void HideProgressIndicator()
+        void HideLiveProgressIndicator()
         {
-            _progressIndicator.IsVisible = false;
-            _progressIndicator.IsIndeterminate = false;
+            _liveprogressIndicator.IsVisible = false;
+            _liveprogressIndicator.IsIndeterminate = false;
+        }
+        void ShowOnDemandProgressIndicator()
+        {
+            _ondemandprogressIndicator.IsVisible = true;
+            _ondemandprogressIndicator.IsIndeterminate = true;
         }
 
-        private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
+        void HideOnDemandProgressIndicator()
         {
-            ShowProgressIndicator();
+            _ondemandprogressIndicator.IsVisible = false;
+            _ondemandprogressIndicator.IsIndeterminate = false;
+        }
+
+        private void RemoveLiveContent()
+        {
             int contentLength = ContentPanel.Children.Count;
-            for(int child=0;child < contentLength;child++)
+            for (int child = 0; child < contentLength; child++)
             {
                 ContentPanel.Children.RemoveAt(0);
 
             }
+        }
+
+        private void liveDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
+        {
+            ShowLiveProgressIndicator();
+            RemoveLiveContent();
             
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
@@ -389,7 +408,7 @@ namespace HlsView
 
         private void ondemandDate_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
-            ShowProgressIndicator();
+            ShowOnDemandProgressIndicator();
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -427,7 +446,7 @@ namespace HlsView
 
         private void pvtLivePivot_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowProgressIndicator();
+            ShowLiveProgressIndicator();
 
             if (liveDate.Value.Value.Date.ToShortDateString() == DateTime.Now.Date.ToShortDateString())
             {
@@ -448,7 +467,7 @@ namespace HlsView
 
         private void ODContentPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowProgressIndicator();
+            ShowOnDemandProgressIndicator();
             //GET TOKEN FROM MEMORY
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -490,7 +509,7 @@ namespace HlsView
             catch (Exception)//System.Reflection.TargetInvocationException)
             {
                 //MessageBox.Show("No OnDemand games found matching these criteria.");
-                HideProgressIndicator();
+                HideOnDemandProgressIndicator();
             }
 
             try
@@ -501,6 +520,7 @@ namespace HlsView
                 int horizMargin = 0;
                 int i = 0;
                 ODContentPanel.Height = 135 * o["ondemand"].Count();
+                RemoveContent();
 
                 foreach (JToken game in o["ondemand"])
                 {
@@ -527,9 +547,9 @@ namespace HlsView
             }
             catch
             {
-                HideProgressIndicator();
+                HideOnDemandProgressIndicator();
             }
-            HideProgressIndicator();
+            HideOnDemandProgressIndicator();
         }
 
         private void btnTeam_Click(object sender, RoutedEventArgs e)
@@ -542,7 +562,7 @@ namespace HlsView
         private void teamPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             chkTeam.IsEnabled = true;
-            ShowProgressIndicator();
+            ShowOnDemandProgressIndicator();
             Teams s = teamPicker.SelectedItem as Teams;
             btnTeam.Content = s.TeamName;
             teamPicker.Visibility = System.Windows.Visibility.Collapsed;
@@ -589,7 +609,7 @@ namespace HlsView
         private void chkDate_Checked(object sender, RoutedEventArgs e)
         {
             ondemandDate.IsEnabled = true;
-            ShowProgressIndicator();
+            ShowOnDemandProgressIndicator();
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
 
@@ -619,7 +639,7 @@ namespace HlsView
 
         private void chkDate_Unchecked(object sender, RoutedEventArgs e)
         {
-            ShowProgressIndicator();
+            ShowOnDemandProgressIndicator();
             ondemandDate.IsEnabled = false;
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
@@ -671,7 +691,7 @@ namespace HlsView
 
         private void chkTeam_Checked(object sender, RoutedEventArgs e)
         {
-           ShowProgressIndicator();
+           ShowOnDemandProgressIndicator();
            btnTeam.IsEnabled = true;
            string authToken = (string)userSettings["Token"];
            string favteam = (string)userSettings["FavTeam"];
@@ -701,7 +721,7 @@ namespace HlsView
 
         private void chkTeam_Unchecked(object sender, RoutedEventArgs e)
         {
-            ShowProgressIndicator();
+            ShowOnDemandProgressIndicator();
             btnTeam.IsEnabled = false;
             string authToken = (string)userSettings["Token"];
             string favteam = (string)userSettings["FavTeam"];
