@@ -66,7 +66,24 @@ namespace HlsView
                     {
                         userSettings["FavTeam"] = (string)o["favteam"];
                     }
-                    
+                    //ADD FAV TEAM TO USER STORAGE
+                    try
+                    {
+                        userSettings.Add("Username", txtUsername.Text);
+                    }
+                    catch (ArgumentException)
+                    {
+                        userSettings["Username"] = txtUsername.Text;
+                    }
+                    //ADD FAV TEAM TO USER STORAGE
+                    try
+                    {
+                        userSettings.Add("Password", pwdPassword.Password);
+                    }
+                    catch (ArgumentException)
+                    {
+                        userSettings["Password"] = pwdPassword.Password;
+                    }
                     //GOOD ACCOUNT - AUTHENTICATE AND NAVIGATE.
                     NavigationService.Navigate(new Uri("/PivotMain.xaml", UriKind.Relative));
                     _progressIndicator.IsVisible = false;
