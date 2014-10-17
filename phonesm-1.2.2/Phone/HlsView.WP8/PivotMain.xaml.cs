@@ -215,10 +215,18 @@ namespace HlsView
                 HideOnDemandProgressIndicator();
             }
 
-            foreach (JToken date in o["dates"])
+            try
             {
-                goodDates.Add(date.ToString());
+                foreach (JToken date in o["dates"])
+                {
+                    goodDates.Add(date.ToString());
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("No Dates found for OnDemand Videos");
+            }
+
             HideOnDemandProgressIndicator();
         }
         private void BuildLocalizedApplicationBar()
