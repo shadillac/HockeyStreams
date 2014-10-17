@@ -29,6 +29,13 @@ namespace HlsView
             
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            //REMOVE LOGIN PAGE FROM MEMORY
+            NavigationService.RemoveBackEntry();
+
+        }
+
         void wc_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
         {
             JObject o = new JObject();
