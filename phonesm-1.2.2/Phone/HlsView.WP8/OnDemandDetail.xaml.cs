@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media;
+using System.Net.Http;
 
 namespace HlsView
 {
@@ -67,21 +68,19 @@ namespace HlsView
                 location = "North America - Central";
             }
 
-
-            //GET TODAYS LIVE GAMES
-            WebClient wc = new WebClient();
-            wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler;
-            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetOnDemandStream?id=" + streamID + "&location=" + location + "&token=" + authToken));
+            GetOnDemandGame(streamID, location, authToken);
 
         }
 
-        void wc_DownloadStringCompletedHandler(object sender, DownloadStringCompletedEventArgs e)
+        private async void GetOnDemandGame(string streamID,string location, string authToken)
         {
-            string authToken = (string)userSettings["Token"];
+            HttpClient hc = new HttpClient();
+            string response = await hc.GetStringAsync("https://api.hockeystreams.com/GetOnDemandStream?id=" + streamID + "&location=" + location + "&token=" + authToken);
+
             JObject o = new JObject();
             try
             {
-                o = JObject.Parse(e.Result);
+                o = JObject.Parse(response);
             }
             catch (Exception)//System.Reflection.TargetInvocationException)
             {

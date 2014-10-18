@@ -78,5 +78,43 @@ namespace HlsView
         {
             tbStatus.Text = mdaHighView.CurrentState.ToString();
         }
+
+        private void mdaHighView_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (SystemTray.IsVisible)
+            {
+                CollapseButtons();
+                SystemTray.IsVisible = false;
+                mdaHighView.Height = 475;
+                mdaHighView.Width = 800;
+                mdaHighView.Margin = new Thickness(-167.596, 125, -170, 160.766);
+                mdaHighView.Stretch = Stretch.Fill;
+            }
+            else
+            {
+                mdaHighView.Height = 399.593;
+                mdaHighView.Width = 754.913;
+                mdaHighView.Margin = new Thickness(-111.447, 175, -185, 179.319);
+                mdaHighView.Stretch = Stretch.Fill;
+                UncollapseButtons();
+                SystemTray.IsVisible = true;
+            }
+        }
+        private void CollapseButtons()
+        {
+            btnPlay.Visibility = Visibility.Collapsed;
+            btnPause.Visibility = Visibility.Collapsed;
+            btnFF.Visibility = Visibility.Collapsed;
+            btnRew.Visibility = Visibility.Collapsed;
+            tbStatus.Visibility = Visibility.Collapsed;
+        }
+        private void UncollapseButtons()
+        {
+            btnPlay.Visibility = Visibility.Visible;
+            btnPause.Visibility = Visibility.Visible;
+            btnFF.Visibility = Visibility.Visible;
+            btnRew.Visibility = Visibility.Visible;
+            tbStatus.Visibility = Visibility.Visible;
+        }
     }
 }

@@ -14,8 +14,8 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid Grid.Row="1" x:Name="ContentRoot" Margin="10,5,10,-1">
-        <MediaElement x:Name="mdaHighView" HorizontalAlignment="Left" Height="399.593" VerticalAlignment="Top" Width="754.913" Margin="-117.181,177.711,-177.732,0" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" CurrentStateChanged="mdaHighView_CurrentStateChanged">
+    <Grid x:Name="ContentRoot" Margin="10,5,10,-1">
+        <MediaElement HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="mdaHighView" Margin="-111.447,175,-185,179.319" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" CurrentStateChanged="mdaHighView_CurrentStateChanged" DoubleTap="mdaHighView_DoubleTap">
             <MediaElement.RenderTransform>
                 <CompositeTransform Rotation="90"/>
             </MediaElement.RenderTransform>

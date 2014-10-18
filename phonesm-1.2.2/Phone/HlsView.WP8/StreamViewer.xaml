@@ -61,13 +61,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center" />
         </StackPanel>
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="383*"/>
-                <ColumnDefinition Width="337*"/>
-            </Grid.ColumnDefinitions>
+        <Grid x:Name="ContentPanel">
             <TextBlock Name="errorBox"
                        Visibility="Collapsed" Grid.ColumnSpan="2" />
             <MediaElement HorizontalAlignment="Stretch"
@@ -76,11 +70,13 @@
                           AutoPlay="True"
                           MediaFailed="mediaElement1_MediaFailed"
                           MediaEnded="mediaElement1_MediaEnded"
-                          CurrentStateChanged="mediaElement1_CurrentStateChanged" BufferingProgressChanged="mediaElement1_BufferingProgressChanged" Margin="0,0,0,81" Grid.ColumnSpan="2" />
-            <Button Content="Fast Fwd"
-            	Click="plusButton_Click" Margin="275,396,306,7" Grid.ColumnSpan="2" />
-            <Button Content="Rewind"
-            	Click="minusButton_Click" Margin="161,396,96,7" />
+                          CurrentStateChanged="mediaElement1_CurrentStateChanged" BufferingProgressChanged="mediaElement1_BufferingProgressChanged" Margin="0,0,0,81" DoubleTap="mediaElement1_DoubleTap" />
+            <Button Height="70" Name="btnFwd" BorderThickness="2" Content="Fast Fwd"
+            	Click="plusButton_Click" Margin="255,396,0,7" HorizontalAlignment="Left"
+            	VerticalAlignment="Center" />
+            <Button Height="70" Name="btnRew" BorderThickness="2" Content="Rewind"
+            	Click="minusButton_Click" Margin="149,396,448,7" HorizontalAlignment="Left"
+            	VerticalAlignment="Center" />
             <Button Content="Play"
             	Height="Auto"
             	x:Name="playButton"
@@ -94,7 +90,7 @@
             	HorizontalAlignment="Left"
             	VerticalAlignment="Center"
             	BorderThickness="2"
-            	Click="stopButton_Click" Margin="75,396,0,7" />
+            	Click="stopButton_Click" Margin="72,396,0,7" />
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

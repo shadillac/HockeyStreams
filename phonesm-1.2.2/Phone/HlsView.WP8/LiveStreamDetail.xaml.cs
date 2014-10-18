@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
 
 namespace HlsView
 {
@@ -57,20 +58,19 @@ namespace HlsView
             }
 
 
-            //GET TODAYS LIVE GAMES
-            WebClient wc = new WebClient();
-            wc.DownloadStringCompleted += wc_DownloadStringCompletedHandler;
-            wc.DownloadStringAsync(new Uri("https://api.hockeystreams.com/GetLiveStream?id=" + streamID + "&location="+ location + "&token=" + authToken));
+            GetLiveGame(streamID, location, authToken);
 
         }
 
-        void wc_DownloadStringCompletedHandler(object sender, DownloadStringCompletedEventArgs e)
+        private async void GetLiveGame(string streamID, string location, string authToken)
         {
-            string authToken = (string)userSettings["Token"];
+            HttpClient hc = new HttpClient();
+            string response = await hc.GetStringAsync("https://api.hockeystreams.com/GetLiveStream?id=" + streamID + "&location=" + location + "&token=" + authToken);
+
             JObject o = new JObject();
             try
             {
-                o = JObject.Parse(e.Result);
+                o = JObject.Parse(response);
             }
             catch (Exception)//System.Reflection.TargetInvocationException)
             {

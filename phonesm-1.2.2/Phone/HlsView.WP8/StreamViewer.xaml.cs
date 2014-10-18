@@ -36,6 +36,8 @@ using SM.Media;
 using SM.Media.Utility;
 using SM.Media.Web;
 using Microsoft.Phone.Tasks;
+using System.Windows.Controls;
+using Microsoft.Phone.Shell;
 
 namespace HlsView
 {
@@ -433,6 +435,43 @@ namespace HlsView
 
             _positionSampler.Start();
 
+        }
+
+        private void mediaElement1_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (SystemTray.IsVisible)
+            {
+                CollapseButtons();
+                SystemTray.IsVisible = false;
+                mediaElement1.Height = 475;
+                mediaElement1.Width = 800;
+                mediaElement1.Stretch = Stretch.Fill;
+            }
+            else
+            {
+                mediaElement1.Height = 391;
+                mediaElement1.Width = 720;
+                mediaElement1.Stretch = Stretch.Fill;
+                UncollapseButtons();
+                SystemTray.IsVisible = true;
+            }
+        }
+
+        private void CollapseButtons()
+        {
+            playButton.Visibility = Visibility.Collapsed;
+            stopButton.Visibility = Visibility.Collapsed;
+            btnFwd.Visibility = Visibility.Collapsed;
+            btnRew.Visibility = Visibility.Collapsed;
+            TitlePanel.Visibility = Visibility.Collapsed;
+        }
+        private void UncollapseButtons()
+        {
+            playButton.Visibility = Visibility.Visible;
+            stopButton.Visibility = Visibility.Visible;
+            btnFwd.Visibility = Visibility.Visible;
+            btnRew.Visibility = Visibility.Visible;
+            TitlePanel.Visibility = Visibility.Visible;
         }
     }
 }
