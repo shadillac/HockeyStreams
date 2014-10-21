@@ -42,8 +42,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
-                    Grid.Row="1"
-                    Margin="418,411,0,10"
+                    Margin="402,435,16,38"
                     Orientation="Horizontal">
             <Button Content="Wake"
                     Visibility="Collapsed"
