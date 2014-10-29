@@ -20,7 +20,7 @@ namespace HlsView
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -22,30 +22,6 @@ namespace HlsView
             InitializeComponent();
         }
 
-        private void chkHideScores_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        void wc_DownloadStringCompletedHandler(object sender, DownloadStringCompletedEventArgs e)
-        {
-            JObject o = new JObject();
-            try
-            {
-                string[] locations = e.Result.Split(new Char[] {','});
-                foreach (string location in locations)
-                {
-                    string[] locData = location.Split(new Char[] { '"' });
-                    locationPicker.Items.Add(locData[3]);
-                }
-                
-            }
-            catch (Exception)//System.Reflection.TargetInvocationException)
-            {
-                MessageBox.Show("Unable to load stream locatoins.");
-            }
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (locationPicker.Items.Count == 0)
@@ -65,6 +41,23 @@ namespace HlsView
                     locationPicker.SelectedItem = "North America - Central";
                 }
             }
+
+            try
+            {
+                string scores = (string)userSettings["HideScores"];
+                if (scores == "1")
+                {
+                    chkHideScores.IsChecked = true;
+                }
+                else
+                {
+                    chkHideScores.IsChecked = false;
+                }
+            }
+            catch
+            {
+                chkHideScores.IsChecked = false;
+            }
            
 
         }
@@ -80,6 +73,29 @@ namespace HlsView
                 userSettings["Location"] = locationPicker.SelectedItem;
             }
 
+            try
+            {
+                if (chkHideScores.IsChecked == true)
+                {
+                    userSettings.Add("HideScores", "1");
+                }
+                else
+                {
+                    userSettings.Add("HideScores", "0");
+                }
+            }
+            catch (Exception)
+            {
+                if (chkHideScores.IsChecked == true)
+                {
+                    userSettings["HideScores"] = "1";
+                }
+                else
+                {
+                    userSettings["HideScores"] = "0";
+                }
+            }
+
             NavigationService.GoBack();
         }
 
@@ -88,36 +104,6 @@ namespace HlsView
         {
 
             NavigationService.GoBack();
-        }
-
-        private void btnIP_Click(object sender, RoutedEventArgs e)
-        {
-            WebClient wClient = new WebClient();
-            wClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-            wClient.UploadStringCompleted += IPUploadCompleted;
-            string parameters2 = "token=" + (string)userSettings["Token"];
-            wClient.UploadStringAsync(new Uri("https://api.hockeystreams.com/IPException?"), "POST", parameters2);
-        }
-
-        void IPUploadCompleted(object sender, UploadStringCompletedEventArgs e)
-        {
-            JObject o = new JObject();
-            try
-            {
-                o = JObject.Parse(e.Result);
-                if (o["status"].ToString()=="Success")
-                {
-                    MessageBox.Show("IP Exception Created Successfully.");
-                }
-                else
-                {
-                    MessageBox.Show("Error in creating IP Exception");
-                }
-            }
-            catch (System.Reflection.TargetInvocationException)
-            {
-                //MessageBox.Show("Username or Password Incorrect.  Please verify and reenter.");
-            }
         }
 
         private void locationPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)

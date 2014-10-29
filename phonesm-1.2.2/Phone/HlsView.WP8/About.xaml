@@ -18,7 +18,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Image Source="/BkGrnd.png" Opacity="0.20" Margin="-93,-34,-86,0"/>
         <!--Pivot Control-->
-        <phone:Pivot Title="TOP CHEDDAR HOCKEY VIDEOS" Loaded="Pivot_Loaded">
+        <phone:Pivot Title="TOP CHEDDAR HOCKEY STREAMS" Loaded="Pivot_Loaded">
             <!--Pivot item one-->
             <phone:PivotItem Header="About">
                 <ScrollViewer>

@@ -57,12 +57,22 @@ namespace HlsView
                 location = "North America - Central";
             }
 
+            string scores;
+            try
+            {
+                scores = (string)userSettings["HideScores"];
+            }
+            catch (Exception)
+            {
+                scores = "0";
+            }
 
-            GetLiveGame(streamID, location, authToken);
+
+            GetLiveGame(streamID, location, authToken, scores);
 
         }
 
-        private async void GetLiveGame(string streamID, string location, string authToken)
+        private async void GetLiveGame(string streamID, string location, string authToken, string scores)
         {
             HttpClient hc = new HttpClient();
             string response = await hc.GetStringAsync("https://api.hockeystreams.com/GetLiveStream?id=" + streamID + "&location=" + location + "&token=" + authToken);
@@ -84,8 +94,28 @@ namespace HlsView
                 atText.Text = "@";
                 homeText.Text = o["homeTeam"].ToString();
                 txtGameTime.Text = "Start Time: " + o["startTime"].ToString();
-                awayScore.Text = o["awayScore"].ToString();
-                homeScore.Text = o["homeScore"].ToString();
+                
+                //Hide scores if settings dictate
+                if (scores == "1")
+                {
+                    tbAwayScore.Visibility = Visibility.Collapsed;
+                    tbHomeScore.Visibility = Visibility.Collapsed;
+                    awayScore.Visibility = Visibility.Collapsed;
+                    homeScore.Visibility = Visibility.Collapsed;
+                    tbHiddenInfo.Visibility = Visibility.Visible;
+                    awayScore.Text = o["awayScore"].ToString();
+                    homeScore.Text = o["homeScore"].ToString();
+                }
+                else
+                {
+                    tbAwayScore.Visibility = Visibility.Visible;
+                    tbHomeScore.Visibility = Visibility.Visible;
+                    awayScore.Visibility = Visibility.Visible;
+                    homeScore.Visibility = Visibility.Visible;
+                    tbHiddenInfo.Visibility = Visibility.Collapsed;
+                    awayScore.Text = o["awayScore"].ToString();
+                    homeScore.Text = o["homeScore"].ToString();
+                }
                 Button launchStream = new Button { Content = "Launch Live Stream", Tag = o["nonDVRSD"][0]["src"].ToString(), Margin = new Thickness(5, 300, 0, 0), VerticalAlignment = VerticalAlignment.Top, Width = 324, Height = 105 };
                 launchStream.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
                 
