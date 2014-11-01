@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="en" />
   </Languages>
-  <App xmlns="" ProductID="{1ece197b-770d-4bab-9fb9-653b84077e99}" Title="Top Cheddar Hockey Streams" RuntimeType="Silverlight" Version="1.0.1.1" Genre="apps.normal" Author="Shad Morris" Description="" Publisher="ShadNickApps" PublisherID="{0895e095-996b-4bf2-92d7-39ed60b12999}">
+  <App xmlns="" ProductID="{1ece197b-770d-4bab-9fb9-653b84077e99}" Title="Top Cheddar Hockey Streams" RuntimeType="Silverlight" Version="1.0.1.0" Genre="apps.normal" Author="Shad Morris" Description="" Publisher="ShadNickApps" PublisherID="{0895e095-996b-4bf2-92d7-39ed60b12999}">
     <IconPath IsRelative="true" IsResource="false">Assets\Tile2.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
