@@ -60,7 +60,7 @@
             <phone:PivotItem x:Name="pvtLivePivot" Header="LiveStreams" Loaded="pvtLivePivot_Loaded" FontSize="16">
                 <Grid>
                     <toolkit:DatePicker x:Name="liveDate" Margin="0,-34,0,494" Width="456" ValueChanged="liveDate_ValueChanged" />
-                    <toolkit:ListPicker FullModeItemTemplate="{StaticResource ItemTemplateForPayment}" x:Name="lstFilter" Margin="12,28,10,433" SelectionChanged="lstFilter_SelectionChanged" FontFamily="Portable User Interface">
+                    <toolkit:ListPicker FullModeItemTemplate="{StaticResource ItemTemplateForPayment}" x:Name="lstFilter" Margin="12,28,0,433" SelectionChanged="lstFilter_SelectionChanged" FontFamily="Portable User Interface" HorizontalAlignment="Left" Width="432">
                     </toolkit:ListPicker>
 
 
