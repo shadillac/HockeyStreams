@@ -684,7 +684,14 @@ namespace HlsView
 
         private void lstFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            ShowLiveProgressIndicator();
+            RemoveLiveContent();
+
+            //GET TOKEN FROM MEMORY
+            string authToken = (string)userSettings["Token"];
+
+            //GET TODAYS LIVE GAMES
+            GetLiveGames("https://api.hockeystreams.com/GetLive?date=" + liveDate.Value.Value.Date.ToString("MM/dd/yyyy") + "&token=" + authToken);
         }
     }
 }
