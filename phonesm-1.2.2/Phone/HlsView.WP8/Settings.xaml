@@ -13,6 +13,11 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Name="ItemTemplateForLocation">
+            <TextBlock Text="{Binding}" FontSize="30"/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -30,7 +35,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Margin="12,17,10,0" Grid.RowSpan="2">
             <Image Margin="-17,-94,-43,-51" Source="/Assets/BkGrnd.png" Opacity="0.2"/>
-            <toolkit:ListPicker Header="Location" x:Name="locationPicker" Margin="23,123,25,528" SelectionChanged="locationPicker_SelectionChanged" Loaded="locationPicker_Loaded"/>
+            <toolkit:ListPicker FullModeItemTemplate="{StaticResource ItemTemplateForLocation}" Header="Location" x:Name="locationPicker" Margin="23,123,25,528" SelectionChanged="locationPicker_SelectionChanged" Loaded="locationPicker_Loaded"/>
             <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="52,628,0,0" VerticalAlignment="Top" Click="btnSave_Click" Width="157" Height="92"/>
             <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="234,628,0,0" VerticalAlignment="Top" Click="btnCancel_Click" Width="157" Height="92"/>
             <Button Name="btnIP" Content="Create IP Exception" HorizontalAlignment="Left" Margin="94,436,0,0" VerticalAlignment="Top" Click="btnIP_Click_1" />

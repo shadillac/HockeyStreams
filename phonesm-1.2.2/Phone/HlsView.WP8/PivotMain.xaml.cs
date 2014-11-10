@@ -36,6 +36,14 @@ namespace HlsView
             this.League = league;
         }
     }
+
+    public class FilterLeague
+    {
+
+        public string FilterName { get; set; }
+        
+    }
+
     public partial class PivotMain : PhoneApplicationPage
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
@@ -46,6 +54,7 @@ namespace HlsView
         public PivotMain()
         {
             InitializeComponent();
+            BuildFilterLeague();
             BuildLocalizedApplicationBar();
             //progress indicator construct
             _liveprogressIndicator.Text = "Getting Info from HockeyStreams.com.";
@@ -62,6 +71,24 @@ namespace HlsView
             LoadTeams(authToken);
             GetOnDemandDates(authToken);
 
+        }
+
+        private void BuildFilterLeague()
+        {
+            List<FilterLeague> source = new List<FilterLeague>();
+            //source.Add(new FilterLeague { FilterName = "ALL" });
+            //source.Add(new FilterLeague { FilterName = "AHL" });
+            //source.Add(new FilterLeague { FilterName = "NHL" });
+            //source.Add(new FilterLeague { FilterName = "OHL" });
+            //source.Add(new FilterLeague { FilterName = "QMJHL" });
+            //source.Add(new FilterLeague { FilterName = "WHL" });
+            lstFilter.Items.Add("ALL");
+            lstFilter.Items.Add("AHL");
+            lstFilter.Items.Add("NHL");
+            lstFilter.Items.Add("OHL");
+            lstFilter.Items.Add("QMJHL");
+            lstFilter.Items.Add("WHL");
+            //lstFilter.ItemsSource = source;
         }
 
         private async void GetOnDemandDates(string authToken)
@@ -191,35 +218,66 @@ namespace HlsView
                 int heightMargin = 0;
                 int horizMargin = 0;
                 int i = 0;
-                ContentPanel.Height = 110 * o["schedule"].Count(); //135
+                //ContentPanel.Height = 110 * o["schedule"].Count(); //135
                 RemoveLiveContent();
 
                 foreach (JToken game in o["schedule"])
                 {
-                    btnGames[i] = new Button { FontSize = 16, Tag = game["id"].ToString(), IsEnabled=false };
-                    btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                    btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    btnGames[i].Content = new TextBlock { Text = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), TextWrapping = TextWrapping.Wrap };
-                    btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
-                    btnGames[i].Width = 450;
-                    btnGames[i].Height = 100;
-                    if (game["isPlaying"].ToString() == "1")
+                    if (lstFilter.SelectedItem.ToString() == "ALL")
                     {
-                        btnGames[i].IsEnabled = true;
-                        btnGames[i].Click += GameList_Click;
+                        btnGames[i] = new Button { FontSize = 16, Tag = game["id"].ToString(), IsEnabled = false };
+                        btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        btnGames[i].Content = new TextBlock { Text = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), TextWrapping = TextWrapping.Wrap };
+                        btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
+                        btnGames[i].Width = 450;
+                        btnGames[i].Height = 100;
+                        if (game["isPlaying"].ToString() == "1")
+                        {
+                            btnGames[i].IsEnabled = true;
+                            btnGames[i].Click += GameList_Click;
+                        }
+
+                        ContentPanel.Children.Add(btnGames[i]);
+
+                        txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(), FontSize = 14 };
+                        txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 90, 0, 0);
+                        ContentPanel.Children.Add(txtInfo[i]);
+
+                        heightMargin = heightMargin + 110;
+                        i++;
                     }
-                    
-                    ContentPanel.Children.Add(btnGames[i]);
+                    else if (lstFilter.SelectedItem.ToString() == game["event"].ToString())
+                    {
+                        btnGames[i] = new Button { FontSize = 16, Tag = game["id"].ToString(), IsEnabled = false };
+                        btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        btnGames[i].Content = new TextBlock { Text = game["awayTeam"].ToString() + " @ " + game["homeTeam"].ToString(), TextWrapping = TextWrapping.Wrap };
+                        btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
+                        btnGames[i].Width = 450;
+                        btnGames[i].Height = 100;
+                        if (game["isPlaying"].ToString() == "1")
+                        {
+                            btnGames[i].IsEnabled = true;
+                            btnGames[i].Click += GameList_Click;
+                        }
 
-                    txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(),FontSize = 14 };
-                    txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                    txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 90, 0, 0);
-                    ContentPanel.Children.Add(txtInfo[i]);
+                        ContentPanel.Children.Add(btnGames[i]);
 
-                    heightMargin = heightMargin + 110;
-                    i++;
+                        txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(), FontSize = 14 };
+                        txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        txtInfo[i].Margin = new Thickness(horizMargin + 225, heightMargin + 90, 0, 0);
+                        ContentPanel.Children.Add(txtInfo[i]);
+
+                        heightMargin = heightMargin + 110;
+                        i++;
+                    }
+
                 }
+                ContentPanel.Height = 110 * i;
             }
             catch
             {
@@ -622,6 +680,11 @@ namespace HlsView
             {
                 GetOnDemandGames("https://api.hockeystreams.com/GetOnDemand?&token=" + authToken);
             }
+        }
+
+        private void lstFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }
