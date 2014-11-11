@@ -98,9 +98,9 @@ namespace HlsView
                 try
                 {
                     //find iStream for full game.
-                    foreach(JToken iStream in o["SDstreams"])
+                    foreach(JToken iStream in o["streams"])
                     {
-                        if (iStream["type"].ToString() == "iStream")
+                        if (iStream["type"].ToString() == "Flash")
                         {
                             if (iStream["src"].ToString() != "")
                             {

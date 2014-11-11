@@ -27,13 +27,13 @@ namespace HlsView
             string source = "";
             NavigationContext.QueryString.TryGetValue("source", out source);
             mdaHighView.Source = new Uri(source, UriKind.Absolute);
-            btnPlay.IsEnabled = false;
+            //btnPlay.IsEnabled = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mdaHighView.Play();
-            btnPlay.IsEnabled = false;
+            //btnPlay.IsEnabled = false;
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
