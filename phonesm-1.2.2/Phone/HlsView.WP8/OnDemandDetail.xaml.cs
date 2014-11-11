@@ -259,7 +259,7 @@ namespace HlsView
             {
                 NavigationService.Navigate(new Uri("/StreamViewer.xaml?source=" + target.Tag.ToString(), UriKind.Relative));
             }
-            else if (target.Tag.ToString().EndsWith(".mp4"))
+            else if (target.Tag.ToString().Contains(".mp4"))
             {
                 NavigationService.Navigate(new Uri("/HighlightViewer.xaml?source=" + target.Tag.ToString(), UriKind.Relative));
             }
