@@ -63,8 +63,8 @@ namespace HlsView
 
                 // Display the URI for testing purposes. Normally, the URI would be passed back to your web service at this point.
                 System.Diagnostics.Debug.WriteLine(pushChannel.ChannelUri.ToString());
-                MessageBox.Show(String.Format("Channel Uri is {0}",
-                    pushChannel.ChannelUri.ToString()));
+                //MessageBox.Show(String.Format("Channel Uri is {0}",
+                //    pushChannel.ChannelUri.ToString()));
 
             }
 
@@ -77,8 +77,8 @@ namespace HlsView
             {
                 // Display the new URI for testing purposes.   Normally, the URI would be passed back to your web service at this point.
                 System.Diagnostics.Debug.WriteLine(e.ChannelUri.ToString());
-                MessageBox.Show(String.Format("Channel Uri is {0}",
-                    e.ChannelUri.ToString()));
+                //MessageBox.Show(String.Format("Channel Uri is {0}",
+                //    e.ChannelUri.ToString()));
 
             });
         }
@@ -135,8 +135,6 @@ namespace HlsView
                 wc.UploadStringCompleted += wc_UploadStringCompleted;
                 string parameters = "username=" + username + "&password=" + password + "&key=" + AppResources.APIKey.ToString();
                 wc.UploadStringAsync(new Uri("https://api.hockeystreams.com/Login?"), "POST", parameters);
-
-
 
             }
             catch (KeyNotFoundException)

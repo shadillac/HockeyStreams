@@ -116,6 +116,7 @@ namespace HlsView
                 // A navigation has failed; break into the debugger
                 Debugger.Break();
             }
+
         }
 
         // Code to execute on Unhandled Exceptions
