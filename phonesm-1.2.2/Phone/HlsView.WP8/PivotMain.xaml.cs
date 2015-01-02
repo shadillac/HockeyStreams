@@ -215,6 +215,7 @@ namespace HlsView
             {
                 Button[] btnGames = new Button[o["schedule"].Count()];
                 TextBlock[] txtInfo = new TextBlock[o["schedule"].Count()];
+                
                 int heightMargin = 0;
                 int horizMargin = 0;
                 int i = 0;
@@ -225,6 +226,7 @@ namespace HlsView
                 {
                     if (lstFilter.SelectedItem.ToString() == "ALL")
                     {
+                        
                         btnGames[i] = new Button { FontSize = 16, Tag = game["id"].ToString(), IsEnabled = false };
                         btnGames[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                         btnGames[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -232,14 +234,21 @@ namespace HlsView
                         btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
                         btnGames[i].Width = 450;
                         btnGames[i].Height = 100;
+                        btnGames[i].IsEnabled = true;
+
                         if (game["isPlaying"].ToString() == "1")
                         {
-                            btnGames[i].IsEnabled = true;
                             btnGames[i].Click += GameList_Click;
+                        }
+                        else
+                        {
+                            btnGames[i].BorderBrush = GetColorFromHexa("#808080");
+                            btnGames[i].Foreground = GetColorFromHexa("#808080");
+                            AddContextMenu(btnGames[i]);
                         }
 
                         ContentPanel.Children.Add(btnGames[i]);
-
+                        
                         txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(), FontSize = 14 };
                         txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
                         txtInfo[i].HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -258,13 +267,20 @@ namespace HlsView
                         btnGames[i].Margin = new Thickness(horizMargin + 0, heightMargin - 0, 0, 0);
                         btnGames[i].Width = 450;
                         btnGames[i].Height = 100;
+                        btnGames[i].IsEnabled = true;
+
                         if (game["isPlaying"].ToString() == "1")
                         {
-                            btnGames[i].IsEnabled = true;
                             btnGames[i].Click += GameList_Click;
                         }
-
+                        else
+                        {
+                            btnGames[i].BorderBrush = GetColorFromHexa("#808080");
+                            btnGames[i].Foreground = GetColorFromHexa("#808080");
+                            AddContextMenu(btnGames[i]);
+                        }
                         ContentPanel.Children.Add(btnGames[i]);
+
 
                         txtInfo[i] = new TextBlock { Text = "Start Time: " + game["startTime"].ToString() + " :: " + game["feedType"].ToString(), FontSize = 14 };
                         txtInfo[i].VerticalAlignment = System.Windows.VerticalAlignment.Top;
@@ -286,6 +302,22 @@ namespace HlsView
             }
             HideLiveProgressIndicator();
 
+        }
+
+        private void AddContextMenu(Button btn)
+        {
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem menuItemRemind = new MenuItem() { Header = "Add Reminder..." };
+            menuItemRemind.Click += new RoutedEventHandler(menuItemRemind_Click);
+            menuItemRemind.Tag = btn.Tag.ToString();
+            contextMenu.Items.Add(menuItemRemind);
+            ContextMenuService.SetContextMenu(btn, contextMenu);
+        }
+
+        void menuItemRemind_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem target = sender as MenuItem;
+            MessageBox.Show(target.Tag.ToString());
         }
 
         public SolidColorBrush GetColorFromHexa(string hexaColor)
