@@ -13,12 +13,27 @@ using HlsView.Resources;
 using Newtonsoft.Json.Linq;
 using Microsoft.Phone.Notification;
 using System.Text;
+using Newtonsoft.Json;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace HlsView
 {
+    public class PushItems
+    {
+        public string Id { get; set; }
+        public string usrname { get; set; }
+        public string channeluri { get; set; }
+        public string gameid { get; set; }
+    }
+
     public partial class Splash : PhoneApplicationPage
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
+        private string channelURI = "";
+        private MobileServiceCollection<PushItems, PushItems> items;
+        private IMobileServiceTable<PushItems> PushTable = App.MobileService.GetTable<PushItems>();
+        private MobileServiceCollection<PushItems, PushItems> pushdata;
+
         public Splash()
         {
             InitializeComponent();
@@ -72,6 +87,7 @@ namespace HlsView
 
         void PushChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
         {
+            channelURI = e.ChannelUri.ToString();
 
             Dispatcher.BeginInvoke(() =>
             {
@@ -124,15 +140,30 @@ namespace HlsView
         }
 
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private async void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            System.Threading.Thread.Sleep(1000);
 
             try
             {
                 string username = (string)userSettings["Username"];
                 string password = (string)userSettings["Password"];
 
+                pushdata = await PushTable
+                    .Where(Item => Item.usrname == username)
+                    .ToCollectionAsync();
+
+                if (pushdata.Count > 0)
+                {
+                    pushdata[0].channeluri = channelURI;
+                    await PushTable.UpdateAsync(pushdata[0]); 
+                }
+                else
+                {
+                    PushItems item = new PushItems { usrname = username, channeluri = channelURI };
+                    await App.MobileService.GetTable<PushItems>().InsertAsync(item);
+                }
+
+                
 
                 WebClient wc = new WebClient();
                 wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";

@@ -35,6 +35,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SM.Media;
 using SM.Media.Utility;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace HlsView
 {
@@ -43,6 +44,9 @@ namespace HlsView
         /// <summary>
         ///     Constructor for the Application object.
         /// </summary>
+        /// 
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://topcheddarwinphone.azure-mobile.net/", "LXtralTsDVWKwaJDJpsbFiQOYWHbgB13");
+
         public App()
         {
             // Global handler for uncaught exceptions.
