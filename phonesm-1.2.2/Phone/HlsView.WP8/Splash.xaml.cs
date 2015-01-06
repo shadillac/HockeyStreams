@@ -154,8 +154,11 @@ namespace HlsView
 
                 if (pushdata.Count > 0)
                 {
-                    pushdata[0].channeluri = channelURI;
-                    await PushTable.UpdateAsync(pushdata[0]); 
+                    foreach (PushItems pdata in pushdata)
+                    {
+                        pdata.channeluri = channelURI;
+                        await PushTable.UpdateAsync(pushdata[0]); 
+                    }                    
                 }
                 else
                 {
