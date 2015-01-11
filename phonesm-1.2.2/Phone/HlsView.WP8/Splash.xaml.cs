@@ -30,7 +30,7 @@ namespace HlsView
     {
         private IsolatedStorageSettings userSettings = IsolatedStorageSettings.ApplicationSettings;
         private string channelURI = "";
-        private MobileServiceCollection<PushItems, PushItems> items;
+        //private MobileServiceCollection<PushItems, PushItems> items;
         private IMobileServiceTable<PushItems> PushTable = App.MobileService.GetTable<PushItems>();
         private MobileServiceCollection<PushItems, PushItems> pushdata;
 
@@ -166,7 +166,14 @@ namespace HlsView
                     await App.MobileService.GetTable<PushItems>().InsertAsync(item);
                 }
 
-                
+                try
+                {
+                    userSettings.Add("ChannelURI", channelURI);
+                }
+                catch (ArgumentException)
+                {
+                    userSettings["ChannelURI"] = channelURI;
+                }
 
                 WebClient wc = new WebClient();
                 wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";

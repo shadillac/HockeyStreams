@@ -4,6 +4,9 @@
     <AssemblyPart x:Name="Autofac" Source="Autofac.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="Microsoft.WindowsAzure.Mobile" Source="Microsoft.WindowsAzure.Mobile.dll" />
+    <AssemblyPart x:Name="Microsoft.WindowsAzure.Mobile.Ext" Source="Microsoft.WindowsAzure.Mobile.Ext.dll" />
+    <AssemblyPart x:Name="Microsoft.WindowsAzure.Mobile.UI" Source="Microsoft.WindowsAzure.Mobile.UI.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="SM.Media.Builder" Source="SM.Media.Builder.dll" />
     <AssemblyPart x:Name="SM.Media" Source="SM.Media.dll" />

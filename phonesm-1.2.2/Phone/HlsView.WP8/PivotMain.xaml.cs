@@ -13,6 +13,7 @@ using System.IO.IsolatedStorage;
 using System.Windows.Media;
 using System.IO;
 using System.Net.Http;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace HlsView
 {
@@ -37,6 +38,14 @@ namespace HlsView
         }
     }
 
+    //public class PushItems
+    //{
+    //    public string Id { get; set; }
+    //    public string usrname { get; set; }
+    //    public string channeluri { get; set; }
+    //    public string gameid { get; set; }
+    //}
+
     public class FilterLeague
     {
 
@@ -50,6 +59,7 @@ namespace HlsView
         List<string> goodDates = new List<string>();
         private ProgressIndicator _liveprogressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
         private ProgressIndicator _ondemandprogressIndicator = new ProgressIndicator(); //Create progress indicator to indicate system busy.
+        private IMobileServiceTable<PushItems> PushTable = App.MobileService.GetTable<PushItems>();
 
         public PivotMain()
         {
@@ -314,10 +324,27 @@ namespace HlsView
             ContextMenuService.SetContextMenu(btn, contextMenu);
         }
 
+        private async void AddReminderToTable(string gameID)
+        {
+            try
+            {
+                string channelURI = (string)userSettings["ChannelURI"];
+                string username = (string)userSettings["Username"];
+                PushItems item = new PushItems { usrname = username, channeluri = channelURI, gameid = gameID };
+                await App.MobileService.GetTable<PushItems>().InsertAsync(item);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MessageBox.Show("Reminder added.");
+        }
+
         void menuItemRemind_Click(object sender, RoutedEventArgs e)
         {
             MenuItem target = sender as MenuItem;
-            MessageBox.Show(target.Tag.ToString());
+            AddReminderToTable(target.Tag.ToString());
+            
         }
 
         public SolidColorBrush GetColorFromHexa(string hexaColor)
