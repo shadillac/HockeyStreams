@@ -42,7 +42,7 @@ namespace HlsView
             HttpNotificationChannel pushChannel;
 
             // The name of our push channel.
-            string channelName = "ToastSampleChannel";
+            string channelName = "TopCheddarChannel";
 
             InitializeComponent();
 
@@ -157,7 +157,7 @@ namespace HlsView
                     foreach (PushItems pdata in pushdata)
                     {
                         pdata.channeluri = channelURI;
-                        await PushTable.UpdateAsync(pushdata[0]); 
+                        await PushTable.UpdateAsync(pdata); 
                     }                    
                 }
                 else
